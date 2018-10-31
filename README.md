@@ -22,21 +22,30 @@ Creating DB schema
 
 All the DB Schema is defined in models.py. Run the following steps to load it.
 -> flask db init
+-> flask db upgrade
 -> flask db migrate -m "users table"
+-> flask db upgrade
 -> flask db migrate -m "business table"
+-> flask db upgrade
 -> flask db migrate -m "checkin table"
+-> flask db upgrade
 -> flask db migrate -m "reviews table"
+-> flask db upgrade
 -> flask db migrate -m "tip table"
+-> flask db upgrade
 -> flask db migrate -m "users1 table"
 -> flask db upgrade
+
+You show now be able to see database(app.db) created in your cwd. You can open an interactive session by running 'sqlite3 app.db'.
+
+Run ".tables" to list all tables in DB. "alembic_version" maintains the commit history of your database, don't mess with it. 
 
 
 Step 5) 
 Dumping Yelp data into DB
 -> Move all the Yelp files into the project root (in parallel with this README file)
--> Load each table by itself, the data's huge and all of it will prolly not fit in memory. In other words, call the loadXXX() functions of DatabaseLoader Class in the loadData.py seperately.
+-> Load each table by itself, the data's huge and all of it will prolly not fit in memory. So call the loadXXX() functions of DatabaseLoader Class in the loadData.py seperately.
 -> This might take time.
--> You can open an interactive session with the db by running 'sqlite3 app.db'
 
 Step 6)
 Running the Flask Application

@@ -101,4 +101,4 @@ class User1(db.Model):
 	compliment_photos = db.Column(db.Integer)
 
 	def __repr__(self):
-		return '<User {}>'.format(self.user_id)
+		return '<User1 {}>'.format(self.user_id)
