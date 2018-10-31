@@ -2,7 +2,7 @@ import json
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app import db
-from app.models import Business, Checkin, Reviews, Tip, User
+from app.models import Business, Checkin, Reviews, Tip, User1
 
 
 class DatabaseLoader:
@@ -11,6 +11,7 @@ class DatabaseLoader:
 		self._checkin = "./yelp_academic_dataset_checkin.json"
 		self._reviews = "./yelp_academic_dataset_review.json"
 		self._tip = "./yelp_academic_dataset_tip.json"
+		self._user = "./yelp_academic_dataset_user.json"
 
 	def _insertBusinessRow(self, row):
 		business_id = row.get("business_id")
@@ -125,7 +126,7 @@ class DatabaseLoader:
 		compliment_funny = row.get("compliment_funny")
 		compliment_writer = row.get("compliment_writer")
 		compliment_photos = row.get("compliment_photos")
-		obj = User(user_id=user_id, name=name, review_count=review_count, yelping_since=yelping_since,
+		obj = User1(user_id=user_id, name=name, review_count=review_count, yelping_since=yelping_since,
 			friends=friends, useful=useful, funny=funny, cool=cool, fans=fans, elite=elite,
 			average_stars=average_stars, compliment_hot=compliment_hot, compliment_more=compliment_more,
 			compliment_profile=compliment_profile, compliment_cute=compliment_cute, compliment_list=compliment_list,
