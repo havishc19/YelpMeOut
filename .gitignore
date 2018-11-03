@@ -39,3 +39,4 @@ venv
 app.db*
 run.log*
 yelp*
+migrations
