@@ -3,8 +3,12 @@ dataGlobal = [];
 function updateCharts() {
   var sel = document.getElementById('cuisinelist');
   var cuisine = sel.value;
-  renderChartPositive(dataGlobal, cuisine);
-  renderChartNegative(dataGlobal, cuisine);
+  document.getElementById('title').innerHTML = "<center><h3>Top 10 positive and negative features for " + cuisine + " restaurants</h3></center>";
+  var data = [];
+  data = data.concat(getDataPositive(dataGlobal, cuisine));
+  data = data.concat(getDataNegative(dataGlobal, cuisine));
+  console.log(data);
+  renderChart(data, "graphic1");
 }
 
 function getCuisines(data) {
@@ -35,81 +39,63 @@ function renderChart(data, div_id) {
       return d3.ascending(a.value, b.value);
   })
 
-  //set up svg using margin conventions - we'll need plenty of room on the left for labels
-  var margin = {
-      top: 15,
-      right: 25,
-      bottom: 15,
-      left: 120
-  };
+var margin = {top: 20, right: 30, bottom: 40, left: 30},
+    width = 1160 - margin.left - margin.right,
+    height = 750 - margin.top - margin.bottom;
 
-  var width = 960 - margin.left - margin.right,
-      height = 1000 - margin.top - margin.bottom;
+var x = d3.scale.linear()
+    .range([0, width]);
 
-  var svg = d3.select("#"+div_id).append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var y = d3.scale.ordinal()
+    .rangeRoundBands([0, height], 0.1);
 
-  var x = d3.scale.linear()
-      .range([0, width-20])
-      .domain([0, d3.max(data, function (d) {
-          return d.value;
-      })]);
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
 
-  var y = d3.scale.ordinal()
-      .rangeRoundBands([height, 0], .1)
-      .domain(data.map(function (d) {
-          return d.name;
-      }));
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickSize(0)
+    .tickPadding(6);
 
-  //make y axis to show bar names
-  var yAxis = d3.svg.axis()
-      .scale(y)
-      //no tick marks
-      .tickSize(0)
-      .orient("left");
+var svg = d3.select("#"+div_id).append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var gy = svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
+  x.domain(d3.extent(data, function(d) { return d.value; })).nice();
+  y.domain(data.map(function(d) { return d.name; }));
 
-  var bars = svg.selectAll(".bar")
+  svg.selectAll(".bar")
       .data(data)
-      .enter()
-      .append("g")
+    .enter().append("rect")
+      .attr("class", function(d) { return "bar bar--" + (d.value < 0 ? "negative" : "positive"); })
+      .attr("x", function(d) { return x(Math.min(0, d.value)); })
+      .attr("y", function(d) { return y(d.name); })
+      .attr("width", function(d) { return Math.abs(x(d.value) - x(0)); })
+      .attr("height", y.rangeBand());
 
-  //append rects
-  bars.append("rect")
-      .attr("class", "bar")
-      .attr("y", function (d) {
-          return y(d.name);
-      })
-      .attr("height", y.rangeBand())
-      .attr("x", 0)
-      .attr("width", function (d) {
-          return x(d.value);
-      });
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
-  //add a value label to the right of each bar
-  bars.append("text")
-      .attr("class", "label")
-      //y position of the label is halfway down the bar
-      .attr("y", function (d) {
-          return y(d.name) + y.rangeBand() / 2 + 4;
-      })
-      //x position is 3 pixels to the right of the bar
-      .attr("x", function (d) {
-          return x(d.value) + 3;
-      })
-      .text(function (d) {
-          return d.value;
-      });
+  svg.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(" + x(0) + ",0)")
+      .call(yAxis);
+
+function type(d) {
+  d.value = +d.value;
+  return d;
+}
 }
 
-function renderChartPositive(data, cuisine) {
+function getDataPositive(data, cuisine) {
   console.log(data);
+  var count = 10;
   var index = 0;
   for(var i=0; i<data.length; i++) {
     if(data[i]["cuisine"] == cuisine) {
@@ -120,14 +106,15 @@ function renderChartPositive(data, cuisine) {
   console.log(data[index]);
   tempdata = data[index]["positive"]
   var data = []
-  for(var i=0; i<tempdata.length; i++) {
+  for(var i=0; i<tempdata.length && i<count; i++) {
     data = data.concat([{"name": tempdata[i][0], "value": tempdata[i][1]}]);
   }
-  renderChart(data, "graphic1");
+  return data
 }
 
-function renderChartNegative(data, cuisine) {
+function getDataNegative(data, cuisine) {
   var index = 0;
+  var count = 10;
   for(var i=0; i<data.length; i++) {
     if(data[i]["cuisine"] == cuisine) {
       index = i;
@@ -136,10 +123,10 @@ function renderChartNegative(data, cuisine) {
   }
   tempdata = data[index]["negative"]
   var data = []
-  for(var i=0; i<tempdata.length; i++) {
-    data = data.concat([{"name": tempdata[i][0], "value": tempdata[i][1]}]);
+  for(var i=0; i<tempdata.length && i<count; i++) {
+    data = data.concat([{"name": tempdata[i][0], "value": -1*tempdata[i][1]}]);
   }
-  renderChart(data, "graphic2");
+  return data
 }       
 
 $(document).ready(function(){
