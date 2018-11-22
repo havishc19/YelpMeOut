@@ -178,3 +178,13 @@ def login():
             form.username.data, form.remember_me.data))
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
+
+
+@app.route('/sentimentMetric')
+def renderSentimentMetric():
+    return render_template('sentimentMetric.html', title='Sentiment Metric')
+
+@app.route('/getSentimentData')
+def getSentimentData():
+    return send_from_directory('data', 'sentimentData.json')
+
