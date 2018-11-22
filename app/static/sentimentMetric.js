@@ -1,4 +1,35 @@
+dataGlobal = [];
+
+function updateCharts() {
+  var sel = document.getElementById('cuisinelist');
+  var cuisine = sel.value;
+  renderChartPositive(dataGlobal, cuisine);
+  renderChartNegative(dataGlobal, cuisine);
+}
+
+function getCuisines(data) {
+  cuisines = [];
+  for(var i=0; i<data.length; i++) {
+    cuisines.push(data[i]["cuisine"]);
+  }
+  return cuisines;
+}
+
+function populateSelectOptions(data) {
+  cuisines = getCuisines(data)
+  var sel = document.getElementById('cuisinelist');
+  for(var i = 0; i < cuisines.length; i++) {
+      var opt = document.createElement('option');
+      opt.innerHTML = cuisines[i];
+      opt.value = cuisines[i];
+      sel.appendChild(opt);
+  }
+}
+
 function renderChart(data, div_id) {
+  //clear the div_id
+  document.getElementById(div_id).innerHTML = "";
+
   //sort bars based on value
   data = data.sort(function (a, b) {
       return d3.ascending(a.value, b.value);
@@ -78,7 +109,16 @@ function renderChart(data, div_id) {
 }
 
 function renderChartPositive(data, cuisine) {
-  tempdata = data[0][cuisine]["positive"]
+  console.log(data);
+  var index = 0;
+  for(var i=0; i<data.length; i++) {
+    if(data[i]["cuisine"] == cuisine) {
+      index = i;
+      break;
+    }
+  }
+  console.log(data[index]);
+  tempdata = data[index]["positive"]
   var data = []
   for(var i=0; i<tempdata.length; i++) {
     data = data.concat([{"name": tempdata[i][0], "value": tempdata[i][1]}]);
@@ -87,7 +127,14 @@ function renderChartPositive(data, cuisine) {
 }
 
 function renderChartNegative(data, cuisine) {
-  tempdata = data[0][cuisine]["negative"]
+  var index = 0;
+  for(var i=0; i<data.length; i++) {
+    if(data[i]["cuisine"] == cuisine) {
+      index = i;
+      break;
+    }
+  }
+  tempdata = data[index]["negative"]
   var data = []
   for(var i=0; i<tempdata.length; i++) {
     data = data.concat([{"name": tempdata[i][0], "value": tempdata[i][1]}]);
@@ -101,8 +148,9 @@ $(document).ready(function(){
     dataType: 'json',
     success: function( resp ) {
       console.log(resp);
-            renderChartPositive(resp.data, "French");
-            renderChartNegative(resp.data, "French");
+            dataGlobal = resp.data;
+            populateSelectOptions(resp.data);
+            updateCharts(resp.data);
             console.log("ho gya");
     },
     error: function( req, status, err ) {

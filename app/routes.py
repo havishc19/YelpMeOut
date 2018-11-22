@@ -187,4 +187,4 @@ def renderSentimentMetric():
 @app.route('/getSentimentData')
 def getSentimentData():
     return send_from_directory('data', 'sentimentData.json')
-    
+

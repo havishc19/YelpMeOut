@@ -130,7 +130,7 @@ def getTopWords(business_ids, flag):
 	return result
 	
 if __name__ == '__main__':
-	cuisines = ["French"]
+	cuisines = ["French", "Pizza"]
 	data = {
 		"data" : []
 	}
@@ -141,10 +141,10 @@ if __name__ == '__main__':
 			idstr += '\'' + id[0] + '\'' + ","
 		id_query = idstr[:-1]
 		cuisine_dict = {
-			cuisine : {}
+			"cuisine" : cuisine,
+			"positive" : getTopWords(id_query, True),
+			"negative" : getTopWords(id_query, False)
 		}
-		cuisine_dict[cuisine]["positive"] = getTopWords(id_query, True)
-		cuisine_dict[cuisine]["negative"] = getTopWords(id_query, False)
 		data["data"].append(cuisine_dict)
 
 	print json.dumps(data)
