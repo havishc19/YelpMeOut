@@ -108,15 +108,18 @@ var renderChart_TagRatings = function(data){
 };
 
 export function getData_TagRatings(){
+    $("#loading").show();
     $.ajax({
     url: '/getTagRating',
     dataType: 'json',
     success: function( resp ) {
       console.log(resp);
       renderChart_TagRatings(resp.data);
+      $("#loading").hide();
     },
     error: function( req, status, err ) {
       console.log( 'something went wrong', status, err );
+      $("#loading").hide();
     }
   });
 }
