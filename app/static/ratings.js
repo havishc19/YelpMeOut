@@ -1,15 +1,14 @@
-
-var renderChart = function(data){
+  var renderChart_Ratings = function(data){
     var sampleTemp = [];
 
     for(var i=data.length-1; i>=0; i--){
         sampleTemp.push({'rating': data[i]['rating'], 'value': parseInt(data[i]['count'])});
     }
-    sample = sampleTemp;
+    var sample = sampleTemp;
     console.log(sample);
 
     const svg = d3.select('svg');
-    const svgContainer = d3.select('#container');
+    const svgContainer = d3.select('#container1');
     
     const margin = 80;
     const width = 1000 - 2 * margin;
@@ -82,7 +81,7 @@ var renderChart = function(data){
 
         const y = yScale(actual.value)
 
-        line = chart.append('line')
+        var line = chart.append('line')
           .attr('id', 'limit')
           .attr('x1', 0)
           .attr('y1', y)
@@ -150,22 +149,19 @@ var renderChart = function(data){
       .attr('x', width / 2 + margin)
       .attr('y', 40)
       .attr('text-anchor', 'middle')
-      .text('Ratings Distribution')
-
-    
+      .text('Ratings Distribution')   
 }
 
-$(document).ready(function(){
 
-	$.ajax({
-		url: '/getTestData',
-		dataType: 'json',
-		success: function( resp ) {
-			console.log(resp);
-            renderChart(resp.data);
-		},
-		error: function( req, status, err ) {
-			console.log( 'something went wrong', status, err );
-		}
-	});
-})
+export function getData_Ratings(){
+    $.ajax({
+    url: '/getTestData',
+    dataType: 'json',
+    success: function( resp ) {
+      renderChart_Ratings(resp.data);
+    },
+    error: function( req, status, err ) {
+      console.log( 'something went wrong', status, err );
+    }
+  });
+}

@@ -1,64 +1,15 @@
-// https://insights.stackoverflow.com/survey/2018/#technology-most-loved-dreaded-and-wanted-languages
-    const sample = [
-      {
-        language: 'Food',
-        value: 98,
-        color: '#000000'
-      },
-      {
-        language: 'Clothing',
-        value: 68,
-        color: '#fbcb39'
-      },
-      {
-        language: 'Beauty',
-        value: 67,
-        color: '#007bc8'
-      },
-      {
-        language: 'Arts & Entertainment',
-        value: 65,
-        color: '#65cedb'
-      },
-      {
-        language: 'Automobile',
-        value: 55,
-        color: '#00a2ee'
-      },
-      {
-        language: 'Real Estate',
-        value: 41,
-        color: '#f9de3f'
-      },
-      {
-        language: 'Pet Services',
-        value: 34,
-        color: '#ff6e52'
-      },
-      {
-        language: 'Dry Cleaning',
-        value: 30,
-        color: '#5d2f8e'
-      },
-      {
-        language: 'General Health',
-        value: 21,
-        color: '#008fc9'
-      },
-      {
-        language: 'Dance Clubs',
-        value: 11,
-        color: '#507dca'
-      }
-    ];
-
+var renderChart = function(data){
+    console.log(data);
+    $("#traffic-chart").remove();
+    var sample = data;
     const margin = 80;
     const width = 1200 - 2 * margin;
     const height = 600 - 2 * margin;
 
     var svg = d3.select("#container").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .attr("id", "traffic-chart");
     // const svg = d3.select('svg');
     // const svgContainer = d3.select('#container');
 
@@ -69,7 +20,7 @@
 
     const xScale = d3.scaleBand()
       .range([height, 0])
-      .domain(sample.map((s) => s.language))
+      .domain(sample.map((s) => s.business))
       .padding(0.4)
 
     const yScale = d3.scaleLinear()
@@ -118,7 +69,7 @@
     barGroups
       .append('rect')
       .attr('class', 'bar')
-      .attr('y', (g) => xScale(g.language))
+      .attr('y', (g) => xScale(g.business))
       .attr('x', (g) => yScale(0.5))
       .attr('width', (g) => yScale(g.value))
       .attr('height', xScale.bandwidth())
@@ -177,7 +128,7 @@
     barGroups
       .append('text')
       .attr('class', 'value')
-      .attr('y', (a) => xScale(a.language) + xScale.bandwidth() / 2)
+      .attr('y', (a) => xScale(a.business) + xScale.bandwidth() / 2)
       .attr('x', (a) => yScale(a.value) + 30)
       .attr('text-anchor', 'middle')
       .text((a) => `${a.value}`)
@@ -211,13 +162,30 @@
       .attr('text-anchor', 'left')
       .selectAll("text")
       .attr("transform", `translate(20,0)`);
+  }
 
-    // svg.append('text')
-    //   .attr('class', 'source')
-    //   .attr('x', width - margin / 2)
-    //   .attr('y', height + margin * 1.7)
-    //   .attr('text-anchor', 'start')
-    //   .text('Source: Stack Overflow, 2018')
 
-    // svgContainer.append(svg);
+  export function changeData(timeRange){
+    console.log(timeRange);
+    $('#dropdownMenuButton').html(timeRange);
+    getData_Traffic(timeRange);
+  }
 
+
+  export function getData_Traffic(timeRange){
+    $("#traffic-chart").remove();
+    $("#loading").show();
+      $.ajax({
+        url: '/getTraffic',
+        data: {'time': timeRange},
+        dataType: 'json',
+        success: function( resp ) {
+          renderChart(resp.data);
+          $("#loading").hide();
+        },
+        error: function( req, status, err ) {
+          console.log( 'something went wrong', status, err );
+          $("#loading").hide();
+        }
+      });
+  }
