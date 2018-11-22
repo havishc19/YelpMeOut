@@ -129,8 +129,30 @@ def getTopWords(business_ids, flag):
 	print "Returning result length :" + str(len(result))  
 	return result
 	
+def removeCommonWords(positive, negative):
+	common = {}
+	for item in positive:
+		common[item[0]] = 1
+	for item in negative:
+		try:
+			temp = common[item[0]]
+			negative.remove(item)
+		except Exception as e:
+			pass
+	return negative
+
+def normalise(data):
+	max_val = -1
+	for item in data:
+		max_val = max(max_val, item[1])
+	index = 0
+	for item in data:
+		data[index] = (item[0], (item[1]*1.0)/(max_val*1.0))
+		index += 1
+	return data
+
 if __name__ == '__main__':
-	cuisines = ["French", "Pizza"]
+	cuisines = ["French", "Pizza", "Indian", "American", "Asian", "Chinese", "Italian", "Mexican", "Thai", "Korean"]
 	data = {
 		"data" : []
 	}
@@ -140,10 +162,15 @@ if __name__ == '__main__':
 		for id in ids:
 			idstr += '\'' + id[0] + '\'' + ","
 		id_query = idstr[:-1]
+		positive = getTopWords(id_query, True)
+		negative = getTopWords(id_query, False)
+		negative = removeCommonWords(positive, negative)
+		negative = normalise(negative[1:])
+		positive = normalise(positive)
 		cuisine_dict = {
 			"cuisine" : cuisine,
-			"positive" : getTopWords(id_query, True),
-			"negative" : getTopWords(id_query, False)
+			"positive" : positive,
+			"negative" : negative
 		}
 		data["data"].append(cuisine_dict)
 
