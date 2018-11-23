@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-
 {% block content %}
+
     <html lang="en">
 		<head>
 		    <meta charset='utf-8' />
@@ -9,12 +9,15 @@
 		    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		</head>
 		<body>
-			<select id="cuisinelist" onchange="updateCharts()"></select>
-			<center><h3> Positive features </h3></center>
-		    <div id="graphic1"></div>
-		    <center><h3> Negative features </h3></center>
-		    <div id="graphic2"></div>
+			<div class="row">
+ 				<div class="col-md-12" id="title"></div>
+ 				<div class="col-md-5"></div>
+ 				<select class="col-md-2" id="cuisinelist" onchange="updateCharts()" align="center"></select>
+			</div>
+  			<br>
+		    <center><div id="graphic1"></div></center>
 		</body>
 		<script src="/static/sentimentMetric.js" charset="utf-8"></script>
 	</html>
+	
 {% endblock %}

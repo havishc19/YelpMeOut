@@ -1,16 +1,18 @@
-body {
-     font-family: "Arial", sans-serif;
+.bar--positive {
+  fill: steelblue;
 }
- .bar {
-     fill: #5f89ad;
+
+.bar--negative {
+  fill: darkorange;
 }
- .axis {
-     font-size: 13px;
+
+.axis text {
+  font: 10px sans-serif;
 }
- .axis path, .axis line {
-     fill: none;
-     display: none;
-}
- .label {
-     font-size: 13px;
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
