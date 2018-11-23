@@ -61,27 +61,28 @@ def getTestData():
 
 @app.route('/getCategories', methods=['GET'])
 def getBusinessCategories():
-	queryStr = "SELECT categories from business"
-	conn = sqlite3.connect('app.db')
-	cur = conn.cursor()
-	cur.execute(queryStr)
-	data = cur.fetchall()
-	categories = {}
+    queryStr = "SELECT categories from business"
+    conn = sqlite3.connect('app.db')
+    cur = conn.cursor()
+    cur.execute(queryStr)
+    data = cur.fetchall()
+    categories = {}
 
-	for i in data:
-		try:
-			temp = i[0].split(", ")
-			for j in temp:
-				try:
-					categories[j] += 1
-				except:
-					categories[j] = 1
-		except:
-			pass
-	categories = sorted(categories.items(), key=lambda kv: kv[1], reverse=True)
-	topCategories = map(lambda x: x[0], categories[:10])
-	# Found top categories, get all businesses with these categories, get counts for a sample time range
-	return categories
+    for i in data:
+        try:
+            temp = i[0].split(", ")
+            for j in temp:
+                try:
+                    categories[j] += 1
+                except:
+                    categories[j] = 1
+        except:
+            pass
+    categories = sorted(categories.items(), key=lambda kv: kv[1], reverse=True)
+    topCategories = map(lambda x: x[0], categories[:10])
+    # Found top categories, get all businesses with these categories, get counts for a sample time range
+    return categories
+
 
 @app.route('/getTraffic', methods=['GET'])
 def getTraffic():
@@ -207,7 +208,6 @@ def getCheckinData():
     data = getCheckins()
     return json.dumps({"data": data})
 
-
 @app.route('/getBusinessPopData', methods=['GET'])
 def getBusinessPopData():
     data = getBusinessCategories()
@@ -248,6 +248,7 @@ def get_rating():
 @app.route('/sentimentMetric')
 def renderSentimentMetric():
     return render_template('sentimentNew.html', title='Sentiment Metric')
+
 
 
 @app.route('/getSentimentData')
