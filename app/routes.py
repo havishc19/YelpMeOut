@@ -76,7 +76,7 @@ def getBusinessCategories():
 	categories = sorted(categories.items(), key=lambda kv: kv[1], reverse=True)
 	topCategories = map(lambda x: x[0], categories[:10])
 	# Found top categories, get all businesses with these categories, get counts for a sample time range
-	return json.dumps(categories[:50])
+	return categories
 
 @app.route('/getTraffic', methods=['GET'])
 def getTraffic():
@@ -163,6 +163,18 @@ def getTagRating():
 		bow.append(temp)
 	print(bow)
 	return json.dumps({'data': bow})
+
+
+@app.route('/getBusinessPopData', methods=['GET'])
+def getBusinessPopData():
+    data = getBusinessCategories()
+    data = data[:10]
+    bow = []
+    for i in data:
+        bow.append({'rating': i[0], 'count': i[1]})
+    print(bow)
+    return json.dumps({'data': bow})
+
 
 @app.route('/analyze')
 def renderAnalyze():
