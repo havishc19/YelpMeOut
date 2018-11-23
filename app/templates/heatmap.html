@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+  <body>
+    <h1><center>Restaurant Frequency Statistics</center></h1>
+    <div id="graph"></div>
+    <script src="../static/topojson.v1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/heatmap.css">
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  </body>
+  <script src="/static/heatmap.js" charset="utf-8"></script>
+</html>
+{% endblock %}
