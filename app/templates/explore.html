@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.html" %}\
 
 {% block content %}
     <!-- <h1>Hi, {{ user.username }}!</h1>
@@ -13,6 +13,8 @@
 		  <title>YelpMeOut Index</title>
 		  <link rel="stylesheet" type="text/css" href="/static/trafficChart.css">
 		  <link rel="stylesheet" type="text/css" href="/static/ratings.css">
+		  <link rel="stylesheet" type="text/css" href="/static/businessPopularity.css">
+		  <script src="https://d3js.org/d3.v4.min.js"></script>
 		</head>
 		<body>
 		  <div id='layout'>
@@ -37,13 +39,21 @@
 
 		  <div id='layout1'>
 		      <div id='container1'>
-		        <svg />
+		        <svg id="svg1"/>
 		      </div>
 		  </div>
 
+		  <div id='layout2'>
+		      <div id='container2'>
+		      	<div class="d3-tooltip"></div>
+		        <svg id="svg2"/>
+		      </div>
+		  </div>
+		  
 		</body>
 		<script src="/static/trafficChart.js" type="module"></script>
 		<script src="/static/ratings.js" type="module"></script>
+		<script src="/static/businessPopularity.js" type="module"></script>
 		<script src="/static/explore.js" type="module"></script>
 		<!-- <script src="/static/metricTest.js"></script> -->
 	</html>

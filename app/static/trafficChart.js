@@ -127,7 +127,7 @@ var renderChart = function(data){
 
     barGroups
       .append('text')
-      .attr('class', 'value')
+      .attr('class', 'value1')
       .attr('y', (a) => xScale(a.business) + xScale.bandwidth() / 2)
       .attr('x', (a) => yScale(a.value) + 30)
       .attr('text-anchor', 'middle')
