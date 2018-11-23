@@ -2,71 +2,175 @@
 
 {% block content %}
     <html lang="en">
-		<head>
-		  <meta charset="UTF-8"/>
-		  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-		  <title>Test Metric</title>
-		  <link rel="stylesheet" type="text/css" href="/static/analyze.css">
-		  <link rel="stylesheet" type="text/css" href="/static/checkin.css">
-		  <!-- <link  href="/static/age-groups.csv"> -->
-		  <script src="https://d3js.org/d3.v4.min.js"></script>
-		</head>
-		</style>
-		<body>
-			<!-- <div id="main">
-				<div class="d3-tooltip"></div>
-				<svg style="margin-left: 100px" width="960" height="500"></svg>
-			</div> -->
-		   <div id='layout1' style="border: 0px solid black">
-		      <div id='container1'>
-		        <div class="d3-tooltip"></div>
-				<svg style="margin-left: 100px" width="960" height="500"></svg>
-		      	<span id="loading"> <div class="loader"></div> 
-		      </div>
-		  </div>
-		  <div id="layout2" style="position: relative; border: 0px solid black">
-		  	<div id="container2">
-		  		<text class="title" x="600" y="40" text-anchor="middle">Title of Graph</text>
-		  		<div class="controls"> 
-		  			<button type="button" class="btn btn-primary" id="toggleDisplay">Toggle</button>
-		  			<div class="form-check form-check-inline">
-		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" onclick="toggleLine(0)" checked>
-		  			  <label class="form-check-label" for="inlineCheckbox1">Mon</label>
-		  			</div>
-		  			<div class="form-check form-check-inline">
-		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" onclick="toggleLine(1)" checked>
-		  			  <label class="form-check-label" for="inlineCheckbox2">Tue</label>
-		  			</div>
-		  			<div class="form-check form-check-inline">
-		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(2)" checked>
-		  			  <label class="form-check-label" for="inlineCheckbox3">Wed</label>
-		  			</div>
-		  			<div class="form-check form-check-inline">
-		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(3)" checked>
-		  			  <label class="form-check-label" for="inlineCheckbox3">Thurs</label>
-		  			</div>
-		  			<div class="form-check form-check-inline">
-		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(4)" checked>
-		  			  <label class="form-check-label" for="inlineCheckbox3">Fri</label>
-		  			</div>
-		  			<div class="form-check form-check-inline">
-		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(5)" checked>
-		  			  <label class="form-check-label" for="inlineCheckbox3">Sat</label>
-		  			</div>
-		  			<div class="form-check form-check-inline">
-		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(6)" checked>
-		  			  <label class="form-check-label" for="inlineCheckbox3">Sun</label>
-		  			</div>
-		  		</div>
-		  		<div id="chart" style="max-height: 500px"></div>
-		  		<span id="loading1"> <div class="loader"></div> 
-		  	</div>
-		  </div>
-		</body>
-		<script src="/static/tagRatings.js" type="module"></script>
-		<script src="/static/analyze.js" type="module"></script>
-		<script src="/static/checkin.js" type="module"></script>
-	</html>
+    <head>
+      <meta charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+      <title>Test Metric</title>
+      <link rel="stylesheet" type="text/css" href="/static/analyze.css">
+      <link rel="stylesheet" type="text/css" href="/static/checkin.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+
+      <!-- <link  href="/static/age-groups.csv"> -->
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    </head>
+    <body>
+      <!-- <div id="main">
+        <div class="d3-tooltip"></div>
+        <svg style="margin-left: 100px" width="960" height="500"></svg>
+      </div> -->
+       <div id='layout1' style="border: 0px solid black">
+          <div id='container1'>
+            <div class="d3-tooltip"></div>
+        <svg style="margin-left: 100px" width="960" height="500"></svg>
+            <span id="loading"> <div class="loader"></div> 
+          </div>
+      </div>
+      <div id="layout2" style="position: relative; border: 0px solid black">
+        <div id="container2">
+          <text class="title" x="600" y="40" text-anchor="middle">Title of Graph</text>
+          <div class="controls"> 
+            <button type="button" class="btn btn-primary" id="toggleDisplay">Toggle</button>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" onclick="toggleLine(0)" checked>
+              <label class="form-check-label" for="inlineCheckbox1">Mon</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" onclick="toggleLine(1)" checked>
+              <label class="form-check-label" for="inlineCheckbox2">Tue</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(2)" checked>
+              <label class="form-check-label" for="inlineCheckbox3">Wed</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(3)" checked>
+              <label class="form-check-label" for="inlineCheckbox3">Thurs</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(4)" checked>
+              <label class="form-check-label" for="inlineCheckbox3">Fri</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(5)" checked>
+              <label class="form-check-label" for="inlineCheckbox3">Sat</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(6)" checked>
+              <label class="form-check-label" for="inlineCheckbox3">Sun</label>
+            </div>
+          </div>
+          <div id="chart" style="max-height: 500px"></div>
+          <span id="loading1"> <div class="loader"></div> 
+        </div>
+      </div>
+
+
+      <div id="layout3" style="position: relative; border: 0px solid black">
+        <span id="loading"> <div class="loader"></div>
+        <div id="dvCheckBoxListControl" class="dvCheckBoxListControl" name="dvCheckBoxListControl"></div>
+        <div style="height: 20px"></div>
+        <button type="button" id="mybtn" style="margin-left: 100px;">Get Rating!</button>
+        <div style="height: 20px"></div>
+        <span id="result" style="margin-left: 100px;"></span>
+        <div style="height: 20px" ></div>
+      </div
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+    <script src="/static/tagRatings.js" type="module"></script>
+    <script src="/static/analyze.js" type="module"></script>
+    <script src="/static/checkin.js" type="module"></script>
+
+    <script type="text/javascript">
+
+        function CreateCheckBoxList(checkboxlistItems) {
+          var table = $('<table style="margin-left: 100px"></table>');
+          var counter = 0;
+          $(checkboxlistItems).each(function () {
+              table.append($('<tr></tr>').append($('<td style="width: 140px"></td>').append($('<input>').attr({
+                  type: 'checkbox', name: 'chklistitem', value: this[0].valueOf(), id: 'chklistitem' + counter, 'class': 'chkListItem'
+              })).append(
+              $('<label style="padding-left: 5px">').attr({
+                  for: 'chklistitem' + counter++,
+                  'class': 'state'
+              }).text(this[0].valueOf()))).append($('<td style="width: 140px"></td>').append($('<input>').attr({
+                  type: 'checkbox', name: 'chklistitem', value: this[1].valueOf(), id: 'chklistitem' + counter, 'class': 'chkListItem'
+              })).append(
+              $('<label style="padding-left: 5px">').attr({
+                  for: 'chklistitem' + counter++,
+                  'class': 'state'
+              }).text(this[1].valueOf()))).append($('<td style="width: 140px"></td>').append($('<input>').attr({
+                  type: 'checkbox', name: 'chklistitem', value: this[2].valueOf(), id: 'chklistitem' + counter, 'class': 'chkListItem'
+              })).append(
+              $('<label style="padding-left: 5px">').attr({
+                  for: 'chklistitem' + counter++,
+                  'class': 'state'
+              }).text(this[2].valueOf())))
+            );
+          });
+
+          $('#dvCheckBoxListControl').append(table);
+        }
+
+          function GetSelectedCheckBoxes() {
+            var allVals = [];
+            $('.chkListItem:checked').each(function () {
+                allVals.push(this.value);
+            });
+            var dataaa = {"data":allVals}
+            $.ajax({
+              type:"POST",
+              url:"/getRating",
+              data: JSON.stringify(dataaa),
+              contentType: 'application/json',
+              success: function(res) {
+
+                $('#result').text(String(JSON.parse(res)["result"]));
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(xhr, status, err.toString());
+            }.bind(this)
+            });
+          }
+
+          $(document).ready(function() {
+            $("#mybtn").click(function(){
+                GetSelectedCheckBoxes();
+            });
+          });
+
+         function autorun()
+         {
+          CreateCheckBoxList([['Wifi', 'Food', 'Service'],
+           ['Timely', 'Price', 'Parking'],
+           ['Valet', 'Cuisine', 'Ambience'],
+           ['Night', 'Alcohol', 'Dessert'],
+           ['Atmosphere', 'Staff', 'Hygiene'],
+           ['Delivery', 'Seating', 'Spacious'],
+           ['Lighting', 'Rooftop', 'Music'],
+           ['Reservation', 'Birthday', 'Smoking'],
+           ['Bar', 'Outdoor', 'Brewery'],
+           ['Pet-friendly', 'Dance', 'Vegan-friendly']]);
+         }
+
+         if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+         else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+         else window.onload = autorun;
+    </script>
+  </html>
 
 {% endblock %}
