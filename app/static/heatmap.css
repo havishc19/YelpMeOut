@@ -1,0 +1,18 @@
+path:hover {
+  fill: red;
+}
+body {
+  text-align: center;
+}
+div.tooltip {
+    white-space: pre-wrap;
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: #FFA07A;
+    border: 0px;
+    pointer-events: none;
+}

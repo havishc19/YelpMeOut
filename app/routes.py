@@ -234,3 +234,15 @@ def renderSentimentMetric():
 def getSentimentData():
     return send_from_directory('data', 'sentimentData.json')
 
+@app.route('/heatMap')
+def renderHeatmap():
+    return render_template('heatmap.html', title='Heatmap')
+
+@app.route('/getHeatmapData')
+def getHeatmapData():
+    return send_from_directory('data', 'restaurant_data.json')    
+
+@app.route('/getUSjson')
+def getUSjson():
+    return send_from_directory('data', 'us.json')
+    
