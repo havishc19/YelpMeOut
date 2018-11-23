@@ -5,6 +5,7 @@ from app import db
 from app.models import Business, Checkin, Reviews, Tip, User1
 import sqlite3
 import json
+from random import randint
 from collections import OrderedDict
 import traffic
 import analyze_tagRating
@@ -34,7 +35,6 @@ def renderMetricTest():
     cur = conn.cursor()
     cur.execute("SELECT count(*) from user1")
     rows = cur.fetchall()
-    print(rows)
     return render_template('metricTest.html', title='Test Metric')
 
 
@@ -103,7 +103,6 @@ def getTagData():
     cur = conn.cursor()
     cur.execute("SELECT attributes, stars from business where categories like 'Restaurants%'")
     rows = cur.fetchall()
-    print(len(rows))
     data = copy.deepcopy(analyze_tagRating.data)
     for row in rows:
         temp = json.loads(row[0])
@@ -161,8 +160,45 @@ def getTagRating():
 		temp["State"] = i
 		temp["total"] = total
 		bow.append(temp)
-	print(bow)
 	return json.dumps({'data': bow})
+
+def getWeek(i):
+    i = str(i)
+    m = {"0": "Sun", "1": "Mon", "2": "Tues", "3": "Wed", "4": "Thur", "5": "Fri", "6": "Sat"}
+    return m[i]
+
+def reverseMap(day):
+    m = {"Fri": 5, "Sun": 0, "Mon": 1, "Tue": 2, "Sat": 6, "Wed": 3, "Thu": 4}
+    return m[day]
+
+def getCheckins():
+    data = {"Mon": [0]*24, "Tue": [0]*24, "Wed": [0]*24, "Thu": [0]*24, "Fri": [0]*24, "Sat": [0]*24, "Sun": [0]*24}
+    conn = sqlite3.connect('app.db')
+    cur = conn.cursor()
+    cur.execute("select * from checkin where business_id ='4JNXUYY8wbaaDmk3BPzlWw'")
+    row = cur.fetchone()
+    checkinData = json.loads(row[0])
+    for i in checkinData:
+        temp = i.split("-")
+        count = checkinData[i]
+        data[temp[0]][int(temp[1])] = count
+    print(data)
+    # i = 0 
+    # while(i < 7):
+    #     temp = []
+    #     j = 0
+    #     while(j < 24):
+    #         j += 1
+    #         temp.append(randint(0,101))
+    #     temp = [getWeek(i)] + temp
+    #     data.append(temp)
+    #     i += 1
+    return data
+
+@app.route('/getCheckinData', methods=['GET'])
+def getCheckinData():
+    data = getCheckins()
+    return json.dumps({"data": data})
 
 
 @app.route('/getBusinessPopData', methods=['GET'])
@@ -172,9 +208,7 @@ def getBusinessPopData():
     bow = []
     for i in data:
         bow.append({'rating': i[0], 'count': i[1]})
-    print(bow)
     return json.dumps({'data': bow})
-
 
 @app.route('/analyze')
 def renderAnalyze():

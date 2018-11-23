@@ -8,6 +8,7 @@
 		  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 		  <title>Test Metric</title>
 		  <link rel="stylesheet" type="text/css" href="/static/analyze.css">
+		  <link rel="stylesheet" type="text/css" href="/static/checkin.css">
 		  <!-- <link  href="/static/age-groups.csv"> -->
 		  <script src="https://d3js.org/d3.v4.min.js"></script>
 		</head>
@@ -17,16 +18,55 @@
 				<div class="d3-tooltip"></div>
 				<svg style="margin-left: 100px" width="960" height="500"></svg>
 			</div> -->
-			<div id='layout1'>
+		   <div id='layout1' style="border: 0px solid black">
 		      <div id='container1'>
 		        <div class="d3-tooltip"></div>
 				<svg style="margin-left: 100px" width="960" height="500"></svg>
-		      	<span id="loading"> <div class="loader"></div> </a>
+		      	<span id="loading"> <div class="loader"></div> 
 		      </div>
+		  </div>
+		  <div id="layout2" style="position: relative; border: 0px solid black">
+		  	<div id="container2">
+		  		<text class="title" x="600" y="40" text-anchor="middle">Title of Graph</text>
+		  		<div class="controls"> 
+		  			<button type="button" class="btn btn-primary" id="toggleDisplay">Toggle</button>
+		  			<div class="form-check form-check-inline">
+		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" onclick="toggleLine(0)" checked>
+		  			  <label class="form-check-label" for="inlineCheckbox1">Mon</label>
+		  			</div>
+		  			<div class="form-check form-check-inline">
+		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" onclick="toggleLine(1)" checked>
+		  			  <label class="form-check-label" for="inlineCheckbox2">Tue</label>
+		  			</div>
+		  			<div class="form-check form-check-inline">
+		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(2)" checked>
+		  			  <label class="form-check-label" for="inlineCheckbox3">Wed</label>
+		  			</div>
+		  			<div class="form-check form-check-inline">
+		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(3)" checked>
+		  			  <label class="form-check-label" for="inlineCheckbox3">Thurs</label>
+		  			</div>
+		  			<div class="form-check form-check-inline">
+		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(4)" checked>
+		  			  <label class="form-check-label" for="inlineCheckbox3">Fri</label>
+		  			</div>
+		  			<div class="form-check form-check-inline">
+		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(5)" checked>
+		  			  <label class="form-check-label" for="inlineCheckbox3">Sat</label>
+		  			</div>
+		  			<div class="form-check form-check-inline">
+		  			  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onclick="toggleLine(6)" checked>
+		  			  <label class="form-check-label" for="inlineCheckbox3">Sun</label>
+		  			</div>
+		  		</div>
+		  		<div id="chart" style="max-height: 500px"></div>
+		  		<span id="loading1"> <div class="loader"></div> 
+		  	</div>
 		  </div>
 		</body>
 		<script src="/static/tagRatings.js" type="module"></script>
 		<script src="/static/analyze.js" type="module"></script>
+		<script src="/static/checkin.js" type="module"></script>
 	</html>
 
 {% endblock %}
