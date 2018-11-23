@@ -228,7 +228,7 @@ def login():
 
 @app.route('/sentimentMetric')
 def renderSentimentMetric():
-    return render_template('sentimentMetric.html', title='Sentiment Metric')
+    return render_template('sentimentNew.html', title='Sentiment Metric')
 
 @app.route('/getSentimentData')
 def getSentimentData():

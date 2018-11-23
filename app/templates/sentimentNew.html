@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+	<html>
+
+		<head>
+			<title>Sentiment Metric</title>
+			<script src="../static/Chart.bundle.js"></script>
+			<script src="../static/utils.js"></script>
+			<style>
+			canvas {
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+			}
+			</style>
+		</head>
+		<body>
+			<div class="row">
+				<div class="col-md-12" id="title"></div>
+				<div class="col-md-5"></div>
+				<select class="col-md-2" id="cuisinelist" onchange="updateCharts()" align="center"></select>
+			</div>
+			<br>
+		    <center><div id="graph" style="width: 75%;">
+				<canvas id="canvas"></canvas>
+			</div></center>
+			<script src="../static/sentimentNew.js" charset="utf-8"></script>
+		</body>
+
+	</html>
+{% endblock %}
