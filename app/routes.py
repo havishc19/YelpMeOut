@@ -12,7 +12,9 @@ import time
 import copy
 import dill as pickle
 
-topCategories = ["Restaurants", "Shopping", "Food", "Beauty & Spas", "Home Services", "Health & Medical", "Local Services", "Automotive", "Nightlife", "Bars"]
+topCategories = ["Restaurants", "Shopping", "Food", "Beauty & Spas", "Home Services", "Health & Medical",
+                 "Local Services", "Automotive", "Nightlife", "Bars"]
+
 
 @app.route('/index')
 def index():
@@ -28,6 +30,7 @@ def index():
         }
     ]
     return render_template('explore.html', title='Home', user=user, posts=posts)
+
 
 @app.route('/metricTest')
 def renderMetricTest():
@@ -46,7 +49,7 @@ def getTestData():
     cur = conn.cursor()
     cur.execute(queryStr)
     data = cur.fetchone()
-    ratingData = {'data':[
+    ratingData = {'data': [
         {'rating': "4-5", 'count': data[0]},
         {'rating': "3-4", 'count': data[1]},
         {'rating': "2-3", 'count': data[2]},
@@ -55,49 +58,52 @@ def getTestData():
     ]}
     return json.dumps(ratingData)
 
+
 @app.route('/getCategories', methods=['GET'])
 def getBusinessCategories():
-	queryStr = "SELECT categories from business"
-	conn = sqlite3.connect('app.db')
-	cur = conn.cursor()
-	cur.execute(queryStr)
-	data = cur.fetchall()
-	categories = {}
+    queryStr = "SELECT categories from business"
+    conn = sqlite3.connect('app.db')
+    cur = conn.cursor()
+    cur.execute(queryStr)
+    data = cur.fetchall()
+    categories = {}
 
-	for i in data:
-		try:
-			temp = i[0].split(", ")
-			for j in temp:
-				try:
-					categories[j] += 1
-				except:
-					categories[j] = 1
-		except:
-			pass
-	categories = sorted(categories.items(), key=lambda kv: kv[1], reverse=True)
-	topCategories = map(lambda x: x[0], categories[:10])
-	# Found top categories, get all businesses with these categories, get counts for a sample time range
-	return categories
+    for i in data:
+        try:
+            temp = i[0].split(", ")
+            for j in temp:
+                try:
+                    categories[j] += 1
+                except:
+                    categories[j] = 1
+        except:
+            pass
+    categories = sorted(categories.items(), key=lambda kv: kv[1], reverse=True)
+    topCategories = map(lambda x: x[0], categories[:10])
+    # Found top categories, get all businesses with these categories, get counts for a sample time range
+    return categories
+
 
 @app.route('/getTraffic', methods=['GET'])
 def getTraffic():
-	timeRange = (request.args.get('time'))
-	bow = traffic.getTrafficData(timeRange)
-	return json.dumps({'data': bow})
+    timeRange = (request.args.get('time'))
+    bow = traffic.getTrafficData(timeRange)
+    return json.dumps({'data': bow})
 
 
 def range(rating):
-	a = float(rating)
-	if( a >= 4):
-		return "4-5"
-	elif(a >= 3 and a < 4):
-		return "3-4"
-	elif(a >= 2 and a < 3):
-		return "2-3"
-	elif(a >= 1 and a < 2):
-		return "1-2"
-	else:
-		return "0-1"
+    a = float(rating)
+    if (a >= 4):
+        return "4-5"
+    elif (a >= 3 and a < 4):
+        return "3-4"
+    elif (a >= 2 and a < 3):
+        return "2-3"
+    elif (a >= 1 and a < 2):
+        return "1-2"
+    else:
+        return "0-1"
+
 
 def getTagData():
     conn = sqlite3.connect('app.db')
@@ -114,56 +120,58 @@ def getTagData():
         # except:
         # 	pass
         try:
-			if(temp["Alcohol"] != "none"):
-				data["Alcohol"][range(row[1])] += 1
+            if (temp["Alcohol"] != "none"):
+                data["Alcohol"][range(row[1])] += 1
         except:
-			pass
+            pass
         try:
-			if(temp["WiFi"] != "no"):
-				data["WiFi"][range(row[1])] += 1
+            if (temp["WiFi"] != "no"):
+                data["WiFi"][range(row[1])] += 1
         except:
-			pass
+            pass
         try:
-			if(temp["HasTV"] == "True"):
-				data["HasTV"][range(row[1])] += 1
+            if (temp["HasTV"] == "True"):
+                data["HasTV"][range(row[1])] += 1
         except:
-			pass
+            pass
         try:
-			if(temp["GoodForKids"] == "True"):
-				data["GoodForKids"][range(row[1])] += 1
+            if (temp["GoodForKids"] == "True"):
+                data["GoodForKids"][range(row[1])] += 1
         except:
-			pass
+            pass
         try:
-			if(temp["RestaurantsReservation"] == "True"):
-				data["Reservations"][range(row[1])] += 1
+            if (temp["RestaurantsReservation"] == "True"):
+                data["Reservations"][range(row[1])] += 1
         except:
-			pass
+            pass
         try:
-			if(temp["WheelchairAccessible"] == "True"):
-				data["Wheelchair Accessible"][range(row[1])] += 1
+            if (temp["WheelchairAccessible"] == "True"):
+                data["Wheelchair Accessible"][range(row[1])] += 1
         except:
-			pass
+            pass
         try:
-			if(temp["Caters"] == "True"):
-				data["Catering"][range(row[1])] += 1
+            if (temp["Caters"] == "True"):
+                data["Catering"][range(row[1])] += 1
         except:
-			pass
+            pass
     return data
+
 
 @app.route('/getTagRating', methods=['GET'])
 def getTagRating():
-	data = getTagData()
-	bow = []
-	for i in data:
-		total = 0
-		temp = data[i]
-		for j in temp:
-			total += int(temp[j])
-		temp["State"] = i
-		temp["total"] = total
-		bow.append(temp)
-	print(bow)
-	return json.dumps({'data': bow})
+    data = getTagData()
+    bow = []
+    for i in data:
+        total = 0
+        temp = data[i]
+        for j in temp:
+            total += int(temp[j])
+        temp["State"] = i
+        temp["total"] = total
+        bow.append(temp)
+    print(bow)
+    return json.dumps({'data': bow})
+
 
 @app.route('/getRating', methods=['POST'])
 def get_rating():
@@ -173,7 +181,8 @@ def get_rating():
         get_rating = (pickle.load(file))
         return json.dumps({'result': round(get_rating(map(str.lower, request.json['data'])), 2)})
 
-    return json.dumps({'result':0})
+    return json.dumps({'result': 0})
+
 
 @app.route('/getBusinessPopData', methods=['GET'])
 def getBusinessPopData():
@@ -188,8 +197,9 @@ def getBusinessPopData():
 
 @app.route('/analyze')
 def renderAnalyze():
-	# data = getTagData()
-	return render_template('analyze.html', title='Analyze')
+    # data = getTagData()
+    return render_template('analyze.html', title='Analyze')
+
 
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
@@ -205,6 +215,7 @@ def login():
 @app.route('/sentimentMetric')
 def renderSentimentMetric():
     return render_template('sentimentMetric.html', title='Sentiment Metric')
+
 
 @app.route('/getSentimentData')
 def getSentimentData():
