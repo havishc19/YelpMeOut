@@ -10,6 +10,7 @@ import traffic
 import analyze_tagRating
 import time
 import copy
+import pickle
 
 topCategories = ["Restaurants", "Shopping", "Food", "Beauty & Spas", "Home Services", "Health & Medical", "Local Services", "Automotive", "Nightlife", "Bars"]
 
@@ -92,7 +93,7 @@ def getBusinessCategories():
     categories = sorted(categories.items(), key=lambda kv: kv[1], reverse=True)
     topCategories = map(lambda x: x[0], categories[:10])
     # Found top categories, get all businesses with these categories, get counts for a sample time range
-    return json.dumps(categories[:50])
+    return categories[:50]
 
 @app.route('/getTraffic', methods=['GET'])
 def getTraffic():
@@ -177,7 +178,53 @@ def getTagRating():
         temp["State"] = i
         temp["total"] = total
         bow.append(temp)
-    print(bow)
+    return json.dumps({'data': bow})
+
+def getWeek(i):
+    i = str(i)
+    m = {"0": "Sun", "1": "Mon", "2": "Tues", "3": "Wed", "4": "Thur", "5": "Fri", "6": "Sat"}
+    return m[i]
+
+def reverseMap(day):
+    m = {"Fri": 5, "Sun": 0, "Mon": 1, "Tue": 2, "Sat": 6, "Wed": 3, "Thu": 4}
+    return m[day]
+
+def getCheckins():
+    data = {"Mon": [0]*24, "Tue": [0]*24, "Wed": [0]*24, "Thu": [0]*24, "Fri": [0]*24, "Sat": [0]*24, "Sun": [0]*24}
+    conn = sqlite3.connect('app.db')
+    cur = conn.cursor()
+    cur.execute("select * from checkin where business_id ='4JNXUYY8wbaaDmk3BPzlWw'")
+    row = cur.fetchone()
+    checkinData = json.loads(row[0])
+    for i in checkinData:
+        temp = i.split("-")
+        count = checkinData[i]
+        data[temp[0]][int(temp[1])] = count
+    print(data)
+    # i = 0 
+    # while(i < 7):
+    #     temp = []
+    #     j = 0
+    #     while(j < 24):
+    #         j += 1
+    #         temp.append(randint(0,101))
+    #     temp = [getWeek(i)] + temp
+    #     data.append(temp)
+    #     i += 1
+    return data
+
+@app.route('/getCheckinData', methods=['GET'])
+def getCheckinData():
+    data = getCheckins()
+    return json.dumps({"data": data})
+
+@app.route('/getBusinessPopData', methods=['GET'])
+def getBusinessPopData():
+    data = getBusinessCategories()
+    data = data[:10]
+    bow = []
+    for i in data:
+        bow.append({'rating': i[0], 'count': i[1]})
     return json.dumps({'data': bow})
 
 @app.route('/analyze')
@@ -196,10 +243,34 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
+@app.route('/getRating', methods=['POST'])
+def get_rating():
+    if not request.json:
+        abort(400)
+    with open('app/data/rating_model.pkl', 'rb') as file:
+        get_rating = (pickle.load(file))
+        return json.dumps({'result': round(get_rating(map(str.lower, request.json['data'])), 2)})
+
+    return json.dumps({'result':0})
+
+
 @app.route('/sentimentMetric')
 def renderSentimentMetric():
-    return render_template('sentimentMetric.html', title='Sentiment Metric')
+    return render_template('sentimentNew.html', title='Sentiment Metric')
+
 
 @app.route('/getSentimentData')
 def getSentimentData():
     return send_from_directory('data', 'sentimentData.json')
+
+@app.route('/heatMap')
+def renderHeatmap():
+    return render_template('heatmap.html', title='Heatmap')
+
+@app.route('/getHeatmapData')
+def getHeatmapData():
+    return send_from_directory('data', 'restaurant_data.json')    
+
+@app.route('/getUSjson')
+def getUSjson():
+    return send_from_directory('data', 'us.json')
