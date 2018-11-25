@@ -110,6 +110,7 @@ var renderGraph = function(data){
   //svg.call(tip);
   var labels = [];
   var value = [];
+  var sum = 0;
   for(var i=0; i<data.length; i++) {
 
     var d = new Date(data[i].date);
@@ -118,7 +119,9 @@ var renderGraph = function(data){
 
     labels.push(str);
     value.push(data[i].value);
+    sum += data[i].value;
   }
+  var average = (sum/value.length).toFixed(2);
   document.getElementById("layout").innerHTML = "<canvas id=\"container\", style=\"width: 75%; height: 50%\"></canvas>";
   new Chart(document.getElementById("container"), {
     type: 'line',
@@ -136,8 +139,7 @@ var renderGraph = function(data){
       responsive: true,
       legend: {
           display: false
-      }
-    },
+      },
     scales: {
         yAxes: [{
             ticks: {
@@ -160,7 +162,24 @@ var renderGraph = function(data){
    hover: {
       mode: 'nearest',
       intersect: true
+    },
+    annotation: {
+      annotations: [{
+        type: 'line',
+        mode: 'horizontal',
+        scaleID: 'y-axis-0',
+        value: average,
+        borderColor: 'tomato',
+        borderWidth: 1,
+        label: {
+          content: "Average Rating: " + average,
+          enabled: true,
+          position: 'bottom'
+        }
+      }],
+      drawTime: "afterDraw"
     }
+  }
   });
 }
 
