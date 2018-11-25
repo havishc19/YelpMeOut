@@ -10,15 +10,23 @@
 		  <link rel="stylesheet" type="text/css" href="/static/popularityCurve.css">
 		</head>
 		<body>
-			<select id="dropdownList" onchange="updateCharts()"></select>
-			<div id='layout'>
-			    <div id='container'>
-			      <svg />
-			      <div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
-			    </div>
+			<div class="row">
+				<div class="col-md-12" id="title"><center><h3>Popularity of business over time</h3></center></div>
+				<div class="col-md-5"></div>
+				<select class="col-md-2" id="dropdownList" onchange="updateCharts()" align="center"></select>
 			</div>
+			<br>
+			<center>
+				<div id='layout' style="width: 75%;">
+				    <canvas id='container', style="width: 75%; height: 50%">
+				      <svg />
+				      <div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
+				    </canvas>
+				</div>
+			</center>
 			<div id="info"></div>
 		</body>
+		<script src="../static/Chart.bundle.js"></script>
 		<script src="/static/popularityCurve.js"></script>
 		
 
