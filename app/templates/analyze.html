@@ -10,23 +10,31 @@
       <link rel="stylesheet" type="text/css" href="/static/analyze.css">
       <link rel="stylesheet" type="text/css" href="/static/checkin.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+      <script src="/static/Chart.bundle.js"></script>
+      <script src="/static/utils.js"></script>
+      <style>
+        canvas {
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+        }
+      </style>
 
       <!-- <link  href="/static/age-groups.csv"> -->
       <script src="https://d3js.org/d3.v4.min.js"></script>
 
     </head>
     <body>
-      <!-- <div id="main">
-        <div class="d3-tooltip"></div>
-        <svg style="margin-left: 100px" width="960" height="500"></svg>
-      </div> -->
+
        <div id='layout1' style="border: 0px solid black">
           <div id='container1'>
-            <div class="d3-tooltip"></div>
-        <svg style="margin-left: 100px" width="960" height="500"></svg>
-            <span id="loading"> <div class="loader"></div> 
+            <!-- <div class="d3-tooltip"></div> -->
+            <!-- <svg style="margin-left: 100px" width="960" height="500"></svg> -->
+            <span id="loading" style="display: inline-block;"> <div class="loader" style="display: inline-block;"></div></span>
+            <canvas id="myChart" style="width:900px; height: 500px; display: inline-block;"> </canvas>
           </div>
       </div>
+
       <div id="layout2" style="position: relative; border: 0px solid black">
         <div id="container2">
           <text class="title" x="600" y="40" text-anchor="middle">Title of Graph</text>
@@ -66,7 +74,6 @@
         </div>
       </div>
 
-
       <div id="layout3" style="position: relative; border: 0px solid black">
         <div id="dvCheckBoxListControl" class="dvCheckBoxListControl" name="dvCheckBoxListControl"></div>
         <div style="height: 20px"></div>
@@ -75,101 +82,13 @@
         <span id="result" style="margin-left: 100px;"></span>
         <div style="height: 20px" ></div>
       </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
     </body>
     <script src="/static/tagRatings.js" type="module"></script>
     <script src="/static/analyze.js" type="module"></script>
     <script src="/static/checkin.js" type="module"></script>
-
-    <script type="text/javascript">
-
-        function CreateCheckBoxList(checkboxlistItems) {
-          var table = $('<table style="margin-left: 100px"></table>');
-          var counter = 0;
-          $(checkboxlistItems).each(function () {
-              table.append($('<tr></tr>').append($('<td style="width: 140px"></td>').append($('<input>').attr({
-                  type: 'checkbox', name: 'chklistitem', value: this[0].valueOf(), id: 'chklistitem' + counter, 'class': 'chkListItem'
-              })).append(
-              $('<label style="padding-left: 5px">').attr({
-                  for: 'chklistitem' + counter++,
-                  'class': 'state'
-              }).text(this[0].valueOf()))).append($('<td style="width: 140px"></td>').append($('<input>').attr({
-                  type: 'checkbox', name: 'chklistitem', value: this[1].valueOf(), id: 'chklistitem' + counter, 'class': 'chkListItem'
-              })).append(
-              $('<label style="padding-left: 5px">').attr({
-                  for: 'chklistitem' + counter++,
-                  'class': 'state'
-              }).text(this[1].valueOf()))).append($('<td style="width: 140px"></td>').append($('<input>').attr({
-                  type: 'checkbox', name: 'chklistitem', value: this[2].valueOf(), id: 'chklistitem' + counter, 'class': 'chkListItem'
-              })).append(
-              $('<label style="padding-left: 5px">').attr({
-                  for: 'chklistitem' + counter++,
-                  'class': 'state'
-              }).text(this[2].valueOf())))
-            );
-          });
-
-          $('#dvCheckBoxListControl').append(table);
-        }
-
-          function GetSelectedCheckBoxes() {
-            var allVals = [];
-            $('.chkListItem:checked').each(function () {
-                allVals.push(this.value);
-            });
-            var dataaa = {"data":allVals}
-            $.ajax({
-              type:"POST",
-              url:"/getRating",
-              data: JSON.stringify(dataaa),
-              contentType: 'application/json',
-              success: function(res) {
-
-                $('#result').text(String(JSON.parse(res)["result"]));
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(xhr, status, err.toString());
-            }.bind(this)
-            });
-          }
-
-          $(document).ready(function() {
-            $("#mybtn").click(function(){
-                GetSelectedCheckBoxes();
-            });
-          });
-
-         function autorun()
-         {
-          CreateCheckBoxList([['Wifi', 'Food', 'Service'],
-           ['Timely', 'Price', 'Parking'],
-           ['Valet', 'Cuisine', 'Ambience'],
-           ['Night', 'Alcohol', 'Dessert'],
-           ['Atmosphere', 'Staff', 'Hygiene'],
-           ['Delivery', 'Seating', 'Spacious'],
-           ['Lighting', 'Rooftop', 'Music'],
-           ['Reservation', 'Birthday', 'Smoking'],
-           ['Bar', 'Outdoor', 'Brewery'],
-           ['Pet-friendly', 'Dance', 'Vegan-friendly']]);
-         }
-
-         if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
-         else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
-         else window.onload = autorun;
-    </script>
+    <!-- <script src="/static/stackedBar.js"></script> -->
+    <script src="/static/model.js"></script>
   </html>
 
 {% endblock %}

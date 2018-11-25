@@ -201,16 +201,6 @@ def getCheckins():
         count = checkinData[i]
         data[temp[0]][int(temp[1])] = count
     print(data)
-    # i = 0 
-    # while(i < 7):
-    #     temp = []
-    #     j = 0
-    #     while(j < 24):
-    #         j += 1
-    #         temp.append(randint(0,101))
-    #     temp = [getWeek(i)] + temp
-    #     data.append(temp)
-    #     i += 1
     return data
 
 @app.route('/getCheckinData', methods=['GET'])
