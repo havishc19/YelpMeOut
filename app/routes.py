@@ -6,10 +6,11 @@ from app.models import Business, Checkin, Reviews, Tip, User1
 import sqlite3
 import json
 from collections import OrderedDict
-# import traffic
-# import analyze_tagRating
+import traffic
+import analyze_tagRating
 import time
 import copy
+import pickle
 
 topCategories = ["Restaurants", "Shopping", "Food", "Beauty & Spas", "Home Services", "Health & Medical", "Local Services", "Automotive", "Nightlife", "Bars"]
 
@@ -92,7 +93,7 @@ def getBusinessCategories():
     categories = sorted(categories.items(), key=lambda kv: kv[1], reverse=True)
     topCategories = map(lambda x: x[0], categories[:10])
     # Found top categories, get all businesses with these categories, get counts for a sample time range
-    return json.dumps(categories[:50])
+    return categories[:50]
 
 @app.route('/getTraffic', methods=['GET'])
 def getTraffic():
@@ -255,7 +256,7 @@ def get_rating():
 
 @app.route('/sentimentMetric')
 def renderSentimentMetric():
-    return render_template('sentimentMetric.html', title='Sentiment Metric')
+    return render_template('sentimentNew.html', title='Sentiment Metric')
 
 
 @app.route('/getSentimentData')
