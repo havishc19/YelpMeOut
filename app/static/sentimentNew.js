@@ -39,8 +39,9 @@ function getDataNegative(data, cuisine) {
 function updateCharts(data) {
   document.getElementById("graph").innerHTML = "<canvas id=\"canvas\"></canvas>";
   var sel = document.getElementById('cuisinelist');
-  var cuisine = sel.value;
-  document.getElementById('title').innerHTML = "<center><h3>Top 10 positive and negative features for " + cuisine + " restaurants</h3></center>";
+  // var cuisine = sel.value;
+  var cuisine = "your"
+  document.getElementById('title').innerHTML = "<center><h3>Top 10 Positive and Negative features for " + cuisine + " restaurant</h3></center>";
   var data = [];
   data = data.concat(getDataPositive(dataGlobal, cuisine));
   data = data.concat(getDataNegative(dataGlobal, cuisine));
@@ -122,7 +123,7 @@ $(document).ready(function(){
     success: function( resp ) {
       console.log(resp);
             dataGlobal = resp.data;
-            populateSelectOptions(resp.data);
+            // populateSelectOptions(resp.data);
             updateCharts(resp.data);
             console.log("ho gya");
     },

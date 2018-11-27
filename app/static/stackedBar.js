@@ -1,56 +1,29 @@
 var barChartData = {
-    labels: ['Alcohol', 'Has TV', 'Reservations', 'Wifi', 'Catering', 'Parking', 'Good For Kids', 'WeelChair'],
+    labels: ["Easy to learn", "Easy to use", "Usefulness of metrics", "Likely to use in future"],
     datasets: [{
-        label: '0-1',
-        backgroundColor: window.chartColors.red,
-        data: [
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor()
-        ]
-    }, {
-        label: '1-2',
+        label: 'Yes',
         backgroundColor: window.chartColors.blue,
         data: [
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor()
+            12, 13, 10, 13
         ]
     }, {
-        label: '2-3',
+        label: 'No',
         backgroundColor: window.chartColors.green,
         data: [
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor(),
-            randomScalingFactor()
+            5, 4, 7, 4
         ]
     }]
 
 };
 window.onload = function() {
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('myChart1').getContext('2d');
     window.myBar = new Chart(ctx, {
         type: 'bar',
         data: barChartData,
         options: {
             title: {
                 display: true,
-                text: 'Chart.js Bar Chart - Stacked'
+                text: 'App Usablity'
             },
             tooltips: {
                 mode: 'index',
@@ -60,9 +33,14 @@ window.onload = function() {
             scales: {
                 xAxes: [{
                     stacked: true,
+                    barPercentage: 0.4
                 }],
                 yAxes: [{
-                    stacked: true
+                    stacked: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Votes"
+                    }
                 }]
             }
         }

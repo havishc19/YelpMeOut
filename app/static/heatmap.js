@@ -31,7 +31,7 @@ function renderHeatmap(data, usjson) {
       .rangeRound([600, 900]);
 
   var labels = ["No data", 0,10,20,30,40,50,60,70,80,90,100];
-  var color = d3.scale.threshold().domain([ "No data", 0,10,20,30,40,50,60,70,80,90]).range(["#f6feec", "#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b", "#003314"]);
+  var color = d3.scale.threshold().domain([ "No data",0, 10,20,30,40,50,60,70,80,90]).range(["#D0F6F5","85DFDC", "#79D7D3", "#6ECECA", "#62C6C2", "#57BDB9", "#4BB5B0", "#3FACA8", "#34A49F", "#289B96", "#1D938E", "#19716D"]);
   // var color = d3.scale.threshold().domain([ "No data", 0,10,20,30,40,50,60,70,80,90]).range(["#f7fcfd", "#e0ecf4", "#bfd3e6", "#9ebcda", "#8c96c6", "#8c6bb1", "#88419d", "#810f7c", "#4d004b", "#3a000f"])
 
   var div = d3.select("#graph")
@@ -53,7 +53,7 @@ function renderHeatmap(data, usjson) {
       .attr("width", 29)
       .attr("fill", function(d) { 
         if(d == "No data") {
-          return "#f6feec";
+          return "#BBF2F0";
         } else {
           return color(d); 
         }
@@ -94,7 +94,7 @@ function renderHeatmap(data, usjson) {
       .enter().append("path")
       .attr("fill", function(d) { 
         if(freq_map.get(d.id) == -1) {  
-          return "#f6feec"; 
+          return "#D0F6F5"; 
         } else if (freq_map.get(d.id)/100 > 100) {
           return color(d.restaurant_count = 100); 
         } else {

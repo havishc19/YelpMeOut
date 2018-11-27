@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+      <title>Test Metric</title>
+      <link rel="stylesheet" type="text/css" href="/static/analyze.css">
+      <link rel="stylesheet" type="text/css" href="/static/checkin.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+      <script src="/static/Chart.bundle.js"></script>
+      <script src="/static/utils.js"></script>
+      <style>
+        canvas {
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+        }
+      </style>
+
+      <!-- <link  href="/static/age-groups.csv"> -->
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    </head>
+    <body>
+
+       <div id='layout1' style="border: 0px solid black">
+          <div id='container1'>
+            <!-- <div class="d3-tooltip"></div> -->
+            <!-- <svg style="margin-left: 100px" width="960" height="500"></svg> -->
+            <span id="loading" style="display: inline-block;"> <div class="loader" style="display: inline-block;"></div></span>
+            <canvas id="myChart" style="width:900px; height: 500px; display: inline-block;"> </canvas>
+          </div>
+      </div>
+
+      <div id="layout3" style="position: relative; border: 0px solid black">
+        <div id="dvCheckBoxListControl" class="dvCheckBoxListControl" name="dvCheckBoxListControl"></div>
+        <div style="height: 20px"></div>
+        <button type="button" id="mybtn" style="margin-left: 100px;">Get Rating!</button>
+        <div style="height: 20px"></div>
+        <span id="result" style="margin-left: 100px;"></span>
+        <div style="height: 20px" ></div>
+      </div>
+
+      <!-- <div id='layout1' style="border: 0px solid black">
+          <div id='container1'>
+            <canvas id="myChart1" style="width:900px; height: 500px; display: inline-block;"> </canvas>
+          </div>
+      </div> -->
+
+    </body>
+    <script src="/static/tagRatings.js" type="module"></script>
+    <script src="/static/predict.js" type="module"></script>
+    <!-- <script src="/static/checkin.js" type="module"></script> -->
+    <!-- <script src="/static/stackedBar.js"></script> -->
+    <script src="/static/model.js"></script>
+  </html>
+
+{% endblock %}

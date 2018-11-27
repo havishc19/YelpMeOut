@@ -20,7 +20,7 @@ svg {
 }
 
 .bar {
-  fill: #80cbc4;
+  fill: #83c1bf;
 }
 
 text {
@@ -78,7 +78,7 @@ text.source {
     position: absolute;
     font-size: 10px;
     right: 100px;
-    background: #80cbc4;
+    background: #83c1bf;
     color: black;
     top: 23px;
     border: none;

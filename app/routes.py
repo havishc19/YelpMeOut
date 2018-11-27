@@ -27,7 +27,7 @@ def index():
             'body': 'Dog says bowbow!!'
         }
     ]
-    return render_template('explore.html', title='Home', user=user, posts=posts)
+    return render_template('explore.html', title='Yelp Me Out!!', user=user, posts=posts)
 
 @app.route('/metricTest')
 def renderMetricTest():
@@ -36,11 +36,11 @@ def renderMetricTest():
     cur.execute("SELECT count(*) from user1")
     rows = cur.fetchall()
     print(rows)
-    return render_template('metricTest.html', title='Test Metric')
+    return render_template('metricTest.html', title='Yelp Me Out!!')
 
 @app.route('/popularityCurve')
 def renderpopularityCurve():
-    return render_template('popularityCurve.html', title='Popularity Curve')
+    return render_template('popularityCurve.html', title='Yelp Me Out!!')
 
 @app.route('/getRatingData', methods=['GET'])
 def getRatingData():
@@ -199,7 +199,7 @@ def getCheckins():
     for i in checkinData:
         temp = i.split("-")
         count = checkinData[i]
-        data[temp[0]][int(temp[1])] = count
+        data[temp[0]][(int(temp[1])-7)%24] = count
     print(data)
     return data
 
@@ -220,7 +220,7 @@ def getBusinessPopData():
 @app.route('/analyze')
 def renderAnalyze():
     # data = getTagData()
-    return render_template('analyze.html', title='Analyze')
+    return render_template('analyze.html', title='Yelp Me Out!!')
 
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
@@ -230,7 +230,7 @@ def login():
         flash('Login requested for user {}, remember_me={}'.format(
             form.username.data, form.remember_me.data))
         return redirect(url_for('index'))
-    return render_template('login.html', title='Sign In', form=form)
+    return render_template('login.html', title='Yelp Me Out!!', form=form)
 
 
 @app.route('/getRating', methods=['POST'])
@@ -246,7 +246,7 @@ def get_rating():
 
 @app.route('/sentimentMetric')
 def renderSentimentMetric():
-    return render_template('sentimentNew.html', title='Sentiment Metric')
+    return render_template('sentimentNew.html', title='Yelp Me Out!!')
 
 
 @app.route('/getSentimentData')
@@ -264,3 +264,12 @@ def getHeatmapData():
 @app.route('/getUSjson')
 def getUSjson():
     return send_from_directory('data', 'us.json')
+
+
+@app.route('/myProfile')
+def myProfile():
+    return render_template('myProfile.html', title='Yelp Me Out!!')
+
+@app.route('/predict')
+def renderPredict():
+    return render_template('predict.html', title='Yelp Me Out!!')

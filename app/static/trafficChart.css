@@ -5,7 +5,7 @@ body {
 .loader {
     
      border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #80cbc4;
+    border-top: 16px solid #83c1bf;
      /*border-bottom: 16px solid red;
      border-left: 16px solid yellow;*/
     border-radius: 50%;
@@ -42,7 +42,7 @@ svg {
 }
 
 .bar {
-  fill: #80cbc4;
+  fill: #83c1bf;
 }
 
 text {
@@ -99,7 +99,7 @@ text.source {
 .custom-time-dropdown{
     position: absolute;
     font-size: 10px;
-    background: #80cbc4;
+    background: #83c1bf;
     color: black;
     border: none;
 }

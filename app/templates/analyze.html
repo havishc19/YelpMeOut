@@ -26,20 +26,18 @@
     </head>
     <body>
 
-       <div id='layout1' style="border: 0px solid black">
+       <!-- <div id='layout1' style="border: 0px solid black">
           <div id='container1'>
-            <!-- <div class="d3-tooltip"></div> -->
-            <!-- <svg style="margin-left: 100px" width="960" height="500"></svg> -->
             <span id="loading" style="display: inline-block;"> <div class="loader" style="display: inline-block;"></div></span>
             <canvas id="myChart" style="width:900px; height: 500px; display: inline-block;"> </canvas>
           </div>
-      </div>
+      </div> -->
 
       <div id="layout2" style="position: relative; border: 0px solid black">
         <div id="container2">
-          <text class="title" x="600" y="40" text-anchor="middle">Title of Graph</text>
-          <div class="controls"> 
-            <button type="button" class="btn btn-primary" id="toggleDisplay">Toggle</button>
+          <h1 class="title" x="600" y="40" text-anchor="middle" style="margin-bottom: 10px">Avg Customer Influx Vs Time of Day</h1>
+          <div class="controls" style="position: relative;"> 
+            <button type="button" class="btn btn-primary" id="toggleDisplay" style="font-size: 80%; position: absolute; left: 10%">Toggle View</button>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" onclick="toggleLine(0)" checked>
               <label class="form-check-label" for="inlineCheckbox1">Mon</label>
@@ -74,21 +72,61 @@
         </div>
       </div>
 
-      <div id="layout3" style="position: relative; border: 0px solid black">
+    <!--   <div id="layout3" style="position: relative; border: 0px solid black">
         <div id="dvCheckBoxListControl" class="dvCheckBoxListControl" name="dvCheckBoxListControl"></div>
         <div style="height: 20px"></div>
         <button type="button" id="mybtn" style="margin-left: 100px;">Get Rating!</button>
         <div style="height: 20px"></div>
         <span id="result" style="margin-left: 100px;"></span>
         <div style="height: 20px" ></div>
+      </div> -->
+
+      <div id='layout1' style="border: 0px solid black">
+          <div id='container1'>
+            <div class="row">
+                <div class="col-md-12" id="title"></div>
+                <!-- <div class="col-md-5"></div>
+                <select class="col-md-2" id="cuisinelist" onchange="updateCharts()" align="center"></select> -->
+            </div>
+            <br>
+            <canvas id="canvas" style="width:900px; height: 500px; display: inline-block;"> </canvas>
+            <center>
+              <div id="graph" style="width: 75%;">
+                <canvas id="canvas"></canvas>
+              </div>
+            </center>
+          </div>
+      </div>
+
+      <div id='layout3' style="border: 0px solid black">
+        <div id='container3'>
+          <div class="row">
+            <div class="col-md-12" id="title"><center><h3>Popularity of your business over time</h3></center></div>
+            <div class="col-md-5"></div>
+            <select class="col-md-2" id="dropdownList" onchange="updateCharts()" align="center"></select>
+          </div>
+          <br>
+          <center>
+            <div id='layout' style="width: 75%;">
+                <canvas id='container', style="width: 75%; height: 50%">
+                  <svg />
+                  <div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
+                </canvas>
+            </div>
+          </center>
+          <div id="info"></div>
+        </div>
       </div>
 
     </body>
-    <script src="/static/tagRatings.js" type="module"></script>
+    <!-- <script src="/static/tagRatings.js" type="module"></script> -->
     <script src="/static/analyze.js" type="module"></script>
     <script src="/static/checkin.js" type="module"></script>
+    <script src="/static/sentimentNew.js" charset="utf-8"></script>
+    <script src="https://rawgit.com/chartjs/chartjs-plugin-annotation/master/chartjs-plugin-annotation.js"></script>
+    <!-- <script src="/static/popularityCurve.js"></script> -->
     <!-- <script src="/static/stackedBar.js"></script> -->
-    <script src="/static/model.js"></script>
+    <!-- <script src="/static/model.js"></script> -->
   </html>
 
 {% endblock %}
