@@ -1,5 +1,5 @@
 function CreateCheckBoxList(checkboxlistItems) {
-  var table = $('<table style="margin-left: 100px"></table>');
+  var table = $('<table class="predict_table"></table>');
   var counter = 0;
   $(checkboxlistItems).each(function () {
       table.append($('<tr></tr>').append($('<td style="width: 140px"></td>').append($('<input>').attr({
