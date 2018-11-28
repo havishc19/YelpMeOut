@@ -41,7 +41,7 @@ function updateCharts(data) {
   var sel = document.getElementById('cuisinelist');
   // var cuisine = sel.value;
   var cuisine = "your"
-  document.getElementById('title').innerHTML = "<center><h3>Top 10 Positive and Negative features for " + cuisine + " restaurant</h3></center>";
+  document.getElementById('title').innerHTML = "<center><h3>Most popular opinions for " + cuisine + " restaurant</h3></center>";
   var data = [];
   data = data.concat(getDataPositive(dataGlobal, cuisine));
   data = data.concat(getDataNegative(dataGlobal, cuisine));
