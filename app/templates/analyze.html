@@ -89,12 +89,12 @@
                 <select class="col-md-2" id="cuisinelist" onchange="updateCharts()" align="center"></select> -->
             </div>
             <br>
-            <canvas id="canvas" style="width:900px; height: 500px; display: inline-block;"> </canvas>
-            <center>
+            <canvas id="sentiment-canvas" style="width:900px; height: 500px; display: inline-block;"> </canvas>
+            <!-- <center>
               <div id="graph" style="width: 75%;">
-                <canvas id="canvas"></canvas>
+                <canvas id="canvas" ></canvas>
               </div>
-            </center>
+            </center> -->
           </div>
       </div>
 
@@ -103,28 +103,29 @@
           <div class="row">
             <div class="col-md-12" id="title"><center><h3>Popularity of your business over time</h3></center></div>
             <div class="col-md-5"></div>
-            <select class="col-md-2" id="dropdownList" onchange="updateCharts()" align="center"></select>
+            <select class="col-md-2" id="dropdownList" onchange="updateCharts_popularity()" align="center"></select>
           </div>
-          <br>
-          <center>
-            <div id='layout' style="width: 75%;">
-                <canvas id='container', style="width: 75%; height: 50%">
+          <br />
+          
+            <div id='layout123' style="width: 90%;">
+                <canvas id='popularity-canvas', style="width: 90%; height: 50%">
                   <svg />
                   <div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
                 </canvas>
             </div>
-          </center>
           <div id="info"></div>
         </div>
       </div>
 
     </body>
     <!-- <script src="/static/tagRatings.js" type="module"></script> -->
+    <script src="/static/popularityCurve.js"></script>
     <script src="/static/analyze.js" type="module"></script>
     <script src="/static/checkin.js" type="module"></script>
     <script src="/static/sentimentNew.js" charset="utf-8"></script>
     <script src="https://rawgit.com/chartjs/chartjs-plugin-annotation/master/chartjs-plugin-annotation.js"></script>
-    <!-- <script src="/static/popularityCurve.js"></script> -->
+    <!-- <script src="/static/heatmap.js" charset="utf-8"></script> -->
+    
     <!-- <script src="/static/stackedBar.js"></script> -->
     <!-- <script src="/static/model.js"></script> -->
   </html>

@@ -11,6 +11,7 @@ import analyze_tagRating
 import time
 import copy
 import pickle
+from restaurant_data import getHeatMapData
 
 topCategories = ["Restaurants", "Shopping", "Food", "Beauty & Spas", "Home Services", "Health & Medical", "Local Services", "Automotive", "Nightlife", "Bars"]
 
@@ -47,10 +48,10 @@ def getRatingData():
     # conn = sqlite3.connect('app.db')
     # cur = conn.cursor()
 
-    # queryStr = "select * from (select AVG(stars), date from reviews where business_id='vHz2RLtfUMVRPFmd7VBEHA' and date>'2018-01-01' group by date order by date DESC limit 1) order by date;"
+    # queryStr = "select * from (select AVG(stars), date from reviews where business_id='vHz2RLtfUMVRPFmd7VBEHA' and date>'2018-01-01' group by date order by date DESC limit 1) order by date limit 10;"
     # cur.execute(queryStr)
     # data = cur.fetchall()
-    time.sleep(2)
+    time.sleep(1)
 
     return send_from_directory('data', 'popularity.json')
     # return json.dumps(ratingData)
@@ -259,7 +260,10 @@ def renderHeatmap():
 
 @app.route('/getHeatmapData')
 def getHeatmapData():
-    return send_from_directory('data', 'restaurant_data.json')    
+    businessType = (request.args.get('businessType'))
+    print(businessType)
+    data = getHeatMapData(businessType)
+    return json.dumps(data)
 
 @app.route('/getUSjson')
 def getUSjson():

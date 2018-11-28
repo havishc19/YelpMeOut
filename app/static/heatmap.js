@@ -1,10 +1,10 @@
-function renderHeatmap(data, usjson) {
+function renderHeatmap(data, usjson, business_type) {
+  $("#business-heatmap").remove();
   var freq_map = d3.map();
   var name_map = d3.map();
   var display_freq_map = d3.map();
   var us = usjson;
 
-  console.log(data);
   for(var i=0; i<data.length; i++) {
     freq_map.set(data[i].code, data[i].count);
     name_map.set(data[i].code, data[i].state);
@@ -15,15 +15,15 @@ function renderHeatmap(data, usjson) {
     }
   }
   
-  console.log(freq_map);
-  console.log(us.objects);
+  
   var margin = {top: 100, right: 90, bottom: 30, left: 300},
       width = 1160 - margin.left - margin.right,
-      height = 800 - margin.top - margin.bottom;
+      height = 600 - margin.top - margin.bottom;
 
   var svg = d3.select("#graph").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
+            .attr("id", "business-heatmap")
             .append("g");
 
   var x = d3.scale.linear()
@@ -67,7 +67,7 @@ function renderHeatmap(data, usjson) {
       .attr("fill", "#000")
       .attr("text-anchor", "start")
       .attr("font-weight", "bold")
-      .text("Frequency of restaurants (units of 100)");
+      .text("Frequency (units of 100)");
 
   g.selectAll("text")
     .data(labels)
@@ -107,7 +107,7 @@ function renderHeatmap(data, usjson) {
         div.transition()
           .duration(200)
           .style("opacity", .9);
-        div.html("State: " + name_map.get(d.id) + "&#10" + "Restaurants: " + display_freq_map.get(d.id))
+        div.html("State: " + name_map.get(d.id) + "&#10" + business_type + ": " + display_freq_map.get(d.id))
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY) + "px");
          })
@@ -118,17 +118,18 @@ function renderHeatmap(data, usjson) {
        });
 }
 
-$(document).ready(function(){
+
+var trigger_renderChart = function(business_type){
   $.ajax({
     url: '/getHeatmapData',
     dataType: 'json',
+    data: {'businessType': business_type},
     success: function( resp ) {
         $.ajax({
           url: '/getUSjson',
           dataType: 'json',
           success: function(resp2) {
-            renderHeatmap(resp.data, resp2);
-            console.log("ye bhi ho gya");
+            renderHeatmap(resp.data, resp2, business_type);
           },
           error: function(req, status, err) {
             console.log('something went wrong', status, err);
@@ -139,4 +140,15 @@ $(document).ready(function(){
       console.log( 'something went wrong', status, err );
     }
   });
+}
+
+window.changeData_heatmap = function(business_type){
+  console.log(business_type);
+  $('#business-type').html(business_type);
+  trigger_renderChart(business_type);
+}
+
+
+$(document).ready(function(){
+  trigger_renderChart("Restaurants");
 })

@@ -1,57 +1,8 @@
 dataGlobal = [];
 
-datawords = [
-            [  
-               "custom servic"
-            ],
-            [  
-               "food servic"
-            ],
-            [  
-               "servic terribl"
-            ],
-            [  
-               "long time"
-            ],
-            [  
-               "main cours"
-            ],
-            [  
-               "took hour"
-            ],
-            [  
-               "mediocr food"
-            ],
-            [  
-               "onion soup"
-            ],
-            [  
-               "worst servic"
-            ],
-            [  
-               "saturday night"
-            ],
-            [  
-               "sever time"
-            ],
-            [  
-               "servic bad"
-            ],
-            [  
-               "horribl servic"
-            ],
-            [  
-               "bad servic"
-            ],
-            [  
-               "credit card"
-            ],
-            [  
-               "egg benedict"
-            ]
-         ]
 
-function updateCharts(data) {
+
+function updateCharts_popularity(data) {
   var sel = document.getElementById('dropdownList');
   var cuisine = sel.value;
   
@@ -65,7 +16,7 @@ function updateCharts(data) {
 
   tempdata = dataGlobal[index]["value"]
   
-  renderGraph(tempdata);
+  renderGraph_popularity(tempdata);
 }
 
 function getList(data) {
@@ -76,7 +27,7 @@ function getList(data) {
   return inputList;
 }
 
-function populateSelectOptions(data) {
+function populateSelectOptions_popularity(data) {
   inputList = getList(data)
   //console.log(inputList)
   var sel = document.getElementById('dropdownList');
@@ -89,7 +40,7 @@ function populateSelectOptions(data) {
 }
 
 
-var renderGraph = function(data){
+var renderGraph_popularity = function(data){
   var arr = []
   for(var i in data) {
     arr.push(
@@ -104,7 +55,7 @@ var renderGraph = function(data){
   // console.log("update")
   // console.log(data)
 
-  const tooltip = d3.select('#tooltip');
+  // const tooltip = d3.select('#tooltip');
   //const tooltipLine = svg.append('line');
 
   //svg.call(tip);
@@ -122,8 +73,8 @@ var renderGraph = function(data){
     sum += data[i].value;
   }
   var average = (sum/value.length).toFixed(2);
-  document.getElementById("layout").innerHTML = "<canvas id=\"container\", style=\"width: 75%; height: 50%\"></canvas>";
-  new Chart(document.getElementById("container"), {
+  document.getElementById("layout123").innerHTML = "<canvas id=\"popularity-canvas\", style=\"width: 75%; height: 50%\"></canvas>";
+  new Chart(document.getElementById("popularity-canvas"), {
     type: 'line',
     data: {
       labels: labels,
@@ -163,22 +114,22 @@ var renderGraph = function(data){
       mode: 'nearest',
       intersect: true
     },
-    annotation: {
-      annotations: [{
-        type: 'line',
-        mode: 'horizontal',
-        scaleID: 'y-axis-0',
-        value: average,
-        borderColor: 'tomato',
-        borderWidth: 1,
-        label: {
-          content: "Average Rating: " + average,
-          enabled: true,
-          position: 'bottom'
-        }
-      }],
-      drawTime: "afterDraw"
-    }
+    // annotation: {
+    //   annotations: [{
+    //     type: 'line',
+    //     mode: 'horizontal',
+    //     scaleID: 'y-axis-0',
+    //     value: average,
+    //     borderColor: 'tomato',
+    //     borderWidth: 1,
+    //     label: {
+    //       content: "Average Rating: " + average,
+    //       enabled: true,
+    //       position: 'bottom'
+    //     }
+    //   }],
+    //   drawTime: "afterDraw"
+    // }
   }
   });
 }
@@ -192,8 +143,8 @@ $(document).ready(function(){
       console.log("hi");
 			//console.log(resp);
       dataGlobal = resp.data;
-      populateSelectOptions(resp.data);
-      updateCharts(resp.data);
+      populateSelectOptions_popularity(resp.data);
+      updateCharts_popularity(resp.data);
 		},
 		error: function( req, status, err ) {
 			console.log( 'something went wrong', status, err );

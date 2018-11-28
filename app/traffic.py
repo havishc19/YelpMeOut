@@ -267,5 +267,6 @@ def getTrafficData(timeRange):
         {"business": "Nightlife", "value": 88},
         {"business": "Bars", "value": 75}]
     }
-    time.sleep(3)
+    import random
+    time.sleep(random.randint(1,3))
     return data[timeRange]

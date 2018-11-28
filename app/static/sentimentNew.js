@@ -37,7 +37,7 @@ function getDataNegative(data, cuisine) {
 }  
 
 function updateCharts(data) {
-  document.getElementById("graph").innerHTML = "<canvas id=\"canvas\"></canvas>";
+  // document.getElementById("graph").innerHTML = "<canvas id=\"canvas\"></canvas>";
   var sel = document.getElementById('cuisinelist');
   // var cuisine = sel.value;
   var cuisine = "your"
@@ -78,7 +78,7 @@ function updateCharts(data) {
 		}]
 	};
 
-	var ctx = document.getElementById('canvas').getContext('2d');
+	var ctx = document.getElementById('sentiment-canvas').getContext('2d');
 	window.myHorizontalBar = new Chart(ctx, {
 		type: 'horizontalBar',
 		data: horizontalBarChartData,
