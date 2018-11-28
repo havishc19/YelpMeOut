@@ -30,6 +30,10 @@ def index():
     ]
     return render_template('explore.html', title='Yelp Me Out!!', user=user, posts=posts)
 
+@app.route('/home')
+def home():
+    return render_template('index.html', title='Yelp Me Out!!')
+
 @app.route('/metricTest')
 def renderMetricTest():
     conn = sqlite3.connect('app.db')
