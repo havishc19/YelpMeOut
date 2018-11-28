@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="/static/analyze.css">
       <link rel="stylesheet" type="text/css" href="/static/checkin.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+      <link rel="stylesheet" type="text/css" href="/static/text.css">
       <script src="/static/Chart.bundle.js"></script>
       <script src="/static/utils.js"></script>
       <style>
@@ -68,6 +69,8 @@
             </div>
           </div>
           <div id="chart" style="max-height: 500px"></div>
+          <div class="fancy" style="position: absolute; left: 10%; top: 4%;">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
+          </div>
           <span id="loading1"> <div class="loader"></div> 
         </div>
       </div>
@@ -81,7 +84,7 @@
         <div style="height: 20px" ></div>
       </div> -->
 
-      <div id='layout1' style="border: 0px solid black">
+      <div id='layout1' style="position: relative; border: 0px solid black">
           <div id='container1'>
             <div class="row">
                 <div class="col-md-12" id="title"></div>
@@ -90,6 +93,8 @@
             </div>
             <br>
             <canvas id="sentiment-canvas" style="width:900px; height: 500px; display: inline-block;"> </canvas>
+              <div class="fancy" style="position: absolute; right: 10%; bottom: 13%;">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
+            </div>
             <!-- <center>
               <div id="graph" style="width: 75%;">
                 <canvas id="canvas" ></canvas>
@@ -98,7 +103,7 @@
           </div>
       </div>
 
-      <div id='layout3' style="border: 0px solid black">
+      <div id='layout3' style="position: relative; border: 0px solid black">
         <div id='container3'>
           <div class="row">
             <div class="col-md-12" id="title"><center><h3>Popularity of your business over time</h3></center></div>
@@ -112,6 +117,8 @@
                   <svg />
                   <div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
                 </canvas>
+            </div>
+              <div class="fancy" style="position: absolute; left: 5%; top: 4%;">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
             </div>
           <div id="info"></div>
         </div>

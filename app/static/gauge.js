@@ -2,7 +2,7 @@ var chart = c3.generate({
     bindto: '#gauge',
     data: {
         columns: [
-            ['data', 4.4]
+            ['Rating', 4.4]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -38,30 +38,38 @@ var chart = c3.generate({
 
 setTimeout(function () {
     chart.load({
-        columns: [['data', 0.9]]
+        columns: [['Rating', 0.9]]
     });
 }, 1000);
 
 setTimeout(function () {
     chart.load({
-        columns: [['data', 1.4]]
+        columns: [['Rating', 1.4]]
     });
 }, 2000);
 
 setTimeout(function () {
     chart.load({
-        columns: [['data', 5]]
+        columns: [['Rating', 5]]
     });
 }, 3000);
 
 setTimeout(function () {
     chart.load({
-        columns: [['data', 4.3]]
+        columns: [['Rating', 4.3]]
     });
 }, 4000);
 
 setTimeout(function () {
     chart.load({
-        columns: [['data', 3.3]]
+        columns: [['Rating', 3.3]]
     });
 }, 5000);
+
+
+setTimeout(function () {
+    chart.load({
+        columns: [['Rating', 0.9]]
+    });
+}, 1000);
+

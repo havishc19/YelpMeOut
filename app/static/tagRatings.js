@@ -150,7 +150,7 @@ var renderChart_TagRatings = function(data){
       options: {
           title: {
               display: true,
-              text: 'Chart.js Bar Chart - Stacked'
+              text: 'Secondary Factors Vs # Restaurants of a particular rating class'
           },
           tooltips: {
               mode: 'index',
@@ -162,9 +162,17 @@ var renderChart_TagRatings = function(data){
           scales: {
               xAxes: [{
                   stacked: true,
+                  scaleLabel: {
+                        display: true,
+                        labelString: "# Restaurants"
+                    }
               }],
               yAxes: [{
-                  stacked: true
+                  stacked: true,
+                  scaleLabel: {
+                        display: true,
+                        labelString: "Secondary Factors"
+                    }
               }]
           }
       }

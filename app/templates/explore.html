@@ -5,6 +5,7 @@
     {% for post in posts %}
     <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %} -->
+
     <html lang="en">
 		<head>
 		  <meta charset="UTF-8"/>
@@ -15,6 +16,7 @@
 		  <link rel="stylesheet" type="text/css" href="/static/ratings.css">
 		  <link rel="stylesheet" type="text/css" href="/static/businessPopularity.css">
 		  <link rel="stylesheet" type="text/css" href="/static/heatmap.css">
+		  <link rel="stylesheet" type="text/css" href="/static/text.css">
 		  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		  <script src="../static/topojson.v1.min.js"></script>
 		  <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -53,27 +55,30 @@
 				    <a class="dropdown-item" href="#" onclick="changeData1('23:00 - 00:00')">23:00 - 00:00</a>
 				  </div>
 				</div>
-				<span id="loading"> <div class="loader"></div> </a>
+				<div class="fancy" style="position: absolute; right: -5%; bottom: 10%">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
+				<span id="loading"> <div class="loader"></div> 
 			</div>
-		  	</div>
-		  </div>
+		 </div>
+		  
 
-		   <div id='layout1'>
-		      <div id='container1'>
+		   <div id='layout4' style="position: relative;">
+		      <div id='container4'>
 		        <svg id="svg1"/>
+		        <div class="fancy" style="position: absolute; left: 5%; bottom: 13%">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
 		      </div>
 		  </div>
 
 		 
 
-		  <div id='layout2'>
+		  <div id='layout2' style="position: relative;">
 		      <div id='container2'>
 		      	<div class="d3-tooltip"></div>
 		        <svg id="svg2"/>
+		        <div class="fancy" style="position: absolute; right: 10%; bottom: 13%">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
 		      </div>
 		  </div>
 
-		   <div id='layout3' style="border: 0px solid black">
+		   <div id='layout3' style="border: 0px solid black; position: relative;">
 		      <div id='container3'>
 		        <h1> Business Frequency Statistics </h1>
 		        <div class="dropdown1">
@@ -94,14 +99,9 @@
 				  </div>
 				</div>
 		        <div id="graph"></div>
+		        <div class="fancy" style="position: absolute; left: 5%; top: 4%;">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
 		      </div>
-		  </div>
-
-		  
-
-
-
-		  
+		  </div>		  
 		</body>
 		<script src="/static/heatmap.js" type="module"></script>	
 		<script src="/static/trafficChart.js" type="module"></script>
