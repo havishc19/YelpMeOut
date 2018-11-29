@@ -241,15 +241,26 @@ def login():
     return render_template('login.html', title='Yelp Me Out!!', form=form)
 
 
+def parseFeatures(features):
+    ans = []
+    for i in features:
+        ans.append(i.encode('ascii', 'ignore'))
+    return ans
+
 @app.route('/getRating', methods=['POST'])
 def get_rating():
     if not request.json:
         abort(400)
     with open('app/data/rating_model.pkl', 'rb') as file:
         get_rating = (pickle.load(file))
-        return json.dumps({'result': round(get_rating(map(str.lower, request.json['data'])), 2)})
+        features = parseFeatures(request.json['data'])
+        print(features)
+        rating = json.dumps({'result': round(get_rating(map(str.lower, 
+            features)), 2)})
+        print(rating)
+        return rating
 
-    return json.dumps({'result':0})
+    return json.dumps({'result':2.5})
 
 
 @app.route('/sentimentMetric')
