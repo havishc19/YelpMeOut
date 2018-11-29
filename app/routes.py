@@ -10,7 +10,7 @@ import traffic
 import analyze_tagRating
 import time
 import copy
-import pickle
+import dill as pickle
 from restaurant_data import getHeatMapData
 
 topCategories = ["Restaurants", "Shopping", "Food", "Beauty & Spas", "Home Services", "Health & Medical", "Local Services", "Automotive", "Nightlife", "Bars"]

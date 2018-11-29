@@ -5,7 +5,6 @@
     {% for post in posts %}
     <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %} -->
-
     <html lang="en">
 		<head>
 		  <meta charset="UTF-8"/>
@@ -16,7 +15,6 @@
 		  <link rel="stylesheet" type="text/css" href="/static/ratings.css">
 		  <link rel="stylesheet" type="text/css" href="/static/businessPopularity.css">
 		  <link rel="stylesheet" type="text/css" href="/static/heatmap.css">
-		  <link rel="stylesheet" type="text/css" href="/static/text.css">
 		  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		  <script src="../static/topojson.v1.min.js"></script>
 		  <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -72,24 +70,24 @@
 					</div>
 					<span id="loading"> <div class="loader"></div> </span>
 				</div>
-
 			  	</div>
 			  </div>
 
 			  <br>
 
-			   <div class="col" id='layout1'>
+			   <div class="col" id='layout1'. style="height: 700px">
 			   	<h3>Rating distribution</h3>
         		  <span class="title" x="600" y="40" text-anchor="middle" style="font-size: 70%;margin-bottom: 10px; font-style: italic;font-family: "Times New Roman", Times, serif;">Want to know how competitive the market is in the domain you are planning to explore? Don't forget to check out the below visualization before you move forward.</span>
 			      <div id='container1'>
 			        <svg id="svg1"/>
 			      </div>
 			  </div>
-			 <br>
+
+			 
 
 			   <div class="col" id='layout3' style="border: 0px solid black">
-			   	<h3>Rating distribution</h3>
-        		  <span class="title" x="600" y="40" text-anchor="middle" style="font-size: 70%;margin-bottom: 30px; font-style: italic;font-family: "Times New Roman", Times, serif;">Want to know how competitive the market is in the domain you are planning to explore? Don't forget to check out the below visualization before you move forward.</span>
+			   	<h3>Business Volume Statistics</h3>
+        		  <span class="title" x="600" y="40" text-anchor="middle" style="font-size: 70%;margin-bottom: 30px; font-style: italic;font-family: "Times New Roman", Times, serif;">Undecided about which city would be ideal to start or expand your business? Don't forget to consider the following metric</span>
         		  <br>
 			      <div id='container3'>
 			        <div class="dropdown1">
@@ -113,6 +111,10 @@
 			      </div>
 			  </div>
 			</div>
+
+		  
+
+
 
 		  
 		</body>
