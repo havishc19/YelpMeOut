@@ -164,14 +164,7 @@
       .attr('x', width / 2 + margin)
       .attr('y', height + margin * 1.7)
       .attr('text-anchor', 'middle')
-      .text('Businesses')
-
-    svg.append('text')
-      .attr('class', 'title')
-      .attr('x', width / 2 + margin)
-      .attr('y', 40)
-      .attr('text-anchor', 'middle')
-      .text('Business Popularity')   
+      .text('Businesses')   
 }
 
 

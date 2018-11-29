@@ -109,7 +109,7 @@ function renderHeatmap(data, usjson, business_type) {
           .style("opacity", .9);
         div.html("State: " + name_map.get(d.id) + "&#10" + business_type + ": " + display_freq_map.get(d.id))
           .style("left", (d3.event.pageX) + "px")
-          .style("top", (d3.event.pageY) + "px");
+          .style("top", (d3.event.pageY - 2100) + "px");
          })
       .on("mouseout", function(d) {
          div.transition()

@@ -149,13 +149,6 @@ var renderChart = function(data){
       .attr('text-anchor', 'middle')
       .text('Business Category')
 
-    svg.append('text')
-      .attr('class', 'title')
-      .attr('x', width / 2 + margin)
-      .attr('y', 40)
-      .attr('text-anchor', 'middle')
-      .text('Popularity of Businesses at various times')
-
     chart.append('g')
       .attr('transform', `translate(0,0)`)
       .call(d3.axisLeft(xScale))
@@ -174,7 +167,7 @@ var renderChart = function(data){
 
   export function getData_Traffic(timeRange){
     $("#traffic-chart").remove();
-    $("#loading").show();
+    // $("#loading").show();
       $.ajax({
         url: '/getTraffic',
         data: {'time': timeRange},
