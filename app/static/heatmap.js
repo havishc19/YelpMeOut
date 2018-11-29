@@ -104,6 +104,7 @@ function renderHeatmap(data, usjson, business_type) {
       .attr("d", d3.geo.path())
       .attr("transform", "translate(0, 100)")
       .on('mousemove', function (d) {
+        console.log(d);
         div.transition()
           .duration(200)
           .style("opacity", .9);

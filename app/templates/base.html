@@ -19,7 +19,8 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Yelp Me Out!!</a>
+          <!-- <a class="navbar-brand" href="/home">Yelp Me Out!!</a> -->
+          <a href="/home" class="navbar-brand" style="color: black;"><img src="/static/assets/img/logo.png" alt="" style="width: 30%">Yelp Me Out!!</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -27,9 +28,12 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('index') }}">Explore <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown active">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Analytics <span class="sr-only">(current)</span>
                       </a>
@@ -65,7 +69,7 @@
             </form> -->
           </div>
         </nav>
-        <hr>
+        <hr style="margin-top: 0 !important">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
