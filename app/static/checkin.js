@@ -47,7 +47,7 @@ function renderChart_checkin(data){
           }
       });   
     chart.resize({height:450});
-    chart.axis.labels({y: 'Avg Customer Influx', x: 'Time'});
+    chart.axis.labels({y: 'Avg Customer count ', x: 'Time [24 hour format]'});
     // setTimeout(function () {
     //     chart.transform('bar');
     // }, 4000);

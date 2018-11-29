@@ -41,7 +41,7 @@ function updateCharts(data) {
   var sel = document.getElementById('cuisinelist');
   // var cuisine = sel.value;
   var cuisine = "your"
-  document.getElementById('title').innerHTML = "<center><h3>Most popular opinions for " + cuisine + " restaurant</h3></center>";
+  document.getElementById('title').innerHTML = "<center><h3>Most Popular Opinions for " + cuisine + " Restaurant</h3></center> <span class=\"title\" x=\"600\" y=\"40\" text-anchor=\"middle\" style=\"font-size: 70%;margin-bottom: 10px; font-style: italic;font-family:\"Times New Roman\", Times, serif;\">Experiencing trouble managing logistics? <br />Look at your consumer volume distribution and maybe plan better? You're welcome :)</span>";
   var data = [];
   data = data.concat(getDataPositive(dataGlobal, cuisine));
   data = data.concat(getDataNegative(dataGlobal, cuisine));
