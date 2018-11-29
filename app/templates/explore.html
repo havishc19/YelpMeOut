@@ -22,86 +22,99 @@
 		  <script src="https://d3js.org/d3.v4.min.js"></script>
 		</head>
 		<body>
-		  <div id='layout'>
-		  	<div id='container'>
-		  		<div class="dropdown">
-				  <button class="btn btn-secondary dropdown-toggle custom-time-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: relative;">
-				    Time: 12:00 - 13:00
-				  </button>
-				  <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton" style="position: relative;">
-				    <a class="dropdown-item" href="#" onclick="changeData1('00:00 - 01:00')">00:00 - 01:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('01:00 - 02:00')">01:00 - 02:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('02:00 - 03:00')">02:00 - 03:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('03:00 - 04:00')">03:00 - 04:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('04:00 - 05:00')">04:00 - 05:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('05:00 - 06:00')">05:00 - 06:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('06:00 - 07:00')">06:00 - 06:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('07:00 - 08:00')">07:00 - 08:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('08:00 - 09:00')">08:00 - 09:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('09:00 - 10:00')">09:00 - 10:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('10:00 - 11:00')">10:00 - 11:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('11:00 - 12:00')">11:00 - 12:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('12:00 - 13:00')">12:00 - 13:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('13:00 - 14:00')">13:00 - 14:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('14:00 - 15:00')">14:00 - 15:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('15:00 - 16:00')">15:00 - 16:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('16:00 - 17:00')">16:00 - 17:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('17:00 - 18:00')">17:00 - 18:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('18:00 - 19:00')">18:00 - 19:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('19:00 - 20:00')">19:00 - 20:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('20:00 - 21:00')">20:00 - 21:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('21:00 - 22:00')">21:00 - 22:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('22:00 - 23:00')">22:00 - 23:00</a>
-				    <a class="dropdown-item" href="#" onclick="changeData1('23:00 - 00:00')">23:00 - 00:00</a>
-				  </div>
+		  <div class="row">
+			  <div class="col" id='layout2'>
+			  	<h3>Business Popularity</h3>
+        		  <span class="title" x="600" y="40" text-anchor="middle" style="font-size: 70%;margin-bottom: 10px; font-style: italic;font-family: "Times New Roman", Times, serif;">Checkout total relative growth of each business across the nation.</span>
+			      <div id='container2'>
+			      	<div class="d3-tooltip"></div>
+			        <svg id="svg2"/>
+			      </div>
+			  </div>
+
+			  <br>
+
+			  <div class="col" id='layout'>
+			  	<h3>Popularity of businesses at various times</h3>
+        		  <span class="title" x="600" y="40" text-anchor="middle" style="margin-bottom: 10px;font-size: 70%;margin-bottom: 10px; font-style: italic;font-family: "Times New Roman", Times, serif;">Experiencing trouble managing logistics? Look at your consumer volume distribution and maybe plan better? You're welcome :)</span>
+        		  
+			  	<div id='container' style="margin-top: 50px">
+			  		<div class="dropdown">
+					  <button class="btn btn-secondary dropdown-toggle custom-time-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: relative;">
+					    Time: 12:00 - 13:00
+					  </button>
+					  <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton" style="position: relative;">
+					    <a class="dropdown-item" href="#" onclick="changeData1('00:00 - 01:00')">00:00 - 01:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('01:00 - 02:00')">01:00 - 02:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('02:00 - 03:00')">02:00 - 03:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('03:00 - 04:00')">03:00 - 04:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('04:00 - 05:00')">04:00 - 05:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('05:00 - 06:00')">05:00 - 06:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('06:00 - 07:00')">06:00 - 06:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('07:00 - 08:00')">07:00 - 08:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('08:00 - 09:00')">08:00 - 09:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('09:00 - 10:00')">09:00 - 10:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('10:00 - 11:00')">10:00 - 11:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('11:00 - 12:00')">11:00 - 12:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('12:00 - 13:00')">12:00 - 13:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('13:00 - 14:00')">13:00 - 14:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('14:00 - 15:00')">14:00 - 15:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('15:00 - 16:00')">15:00 - 16:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('16:00 - 17:00')">16:00 - 17:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('17:00 - 18:00')">17:00 - 18:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('18:00 - 19:00')">18:00 - 19:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('19:00 - 20:00')">19:00 - 20:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('20:00 - 21:00')">20:00 - 21:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('21:00 - 22:00')">21:00 - 22:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('22:00 - 23:00')">22:00 - 23:00</a>
+					    <a class="dropdown-item" href="#" onclick="changeData1('23:00 - 00:00')">23:00 - 00:00</a>
+					  </div>
+					</div>
+					<span id="loading"> <div class="loader"></div> </span>
 				</div>
-				<div class="fancy" style="position: absolute; right: -5%; bottom: 10%">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
-				<span id="loading"> <div class="loader"></div> 
+
+			  	</div>
+			  </div>
+
+			  <br>
+
+			   <div class="col" id='layout1'>
+			   	<h3>Rating distribution</h3>
+        		  <span class="title" x="600" y="40" text-anchor="middle" style="font-size: 70%;margin-bottom: 10px; font-style: italic;font-family: "Times New Roman", Times, serif;">Want to know how competitive the market is in the domain you are planning to explore? Don't forget to check out the below visualization before you move forward.</span>
+			      <div id='container1'>
+			        <svg id="svg1"/>
+			      </div>
+			  </div>
+			 <br>
+
+			   <div class="col" id='layout3' style="border: 0px solid black">
+			   	<h3>Rating distribution</h3>
+        		  <span class="title" x="600" y="40" text-anchor="middle" style="font-size: 70%;margin-bottom: 30px; font-style: italic;font-family: "Times New Roman", Times, serif;">Want to know how competitive the market is in the domain you are planning to explore? Don't forget to check out the below visualization before you move forward.</span>
+        		  <br>
+			      <div id='container3'>
+			        <div class="dropdown1">
+					  <button class="btn btn-secondary dropdown-toggle custom-time-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: relative;">
+					    Business Type: <span id="business-type">Restaurants</span>
+					  </button>
+					  <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton" style="position: relative;">
+					    <a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Restaurants')">Restaurants</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Shopping')">Shopping</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Food')">Food</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Beauty & Spas')">Beauty & Spas</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Home Services')">Home Services</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Health & Medical')">Health & Medical</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Local Services')">Local Services</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Automotive')">Automotive</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Nightlife')">Nightlife</a>
+					   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Bars')">Bars</a>
+					  </div>
+					</div>
+			        <div id="graph"></div>
+			      </div>
+			  </div>
 			</div>
-		 </div>
+
 		  
-
-		   <div id='layout4' style="position: relative;">
-		      <div id='container4'>
-		        <svg id="svg1"/>
-		        <div class="fancy" style="position: absolute; right: 10%; bottom: 13%">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
-		      </div>
-		  </div>
-
-		 
-
-		  <div id='layout2' style="position: relative;">
-		      <div id='container2'>
-		      	<div class="d3-tooltip"></div>
-		        <svg id="svg2"/>
-		        <div class="fancy" style="position: absolute; right: 0%; bottom: 13%">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
-		      </div>
-		  </div>
-
-		   <div id='layout3' style="border: 0px solid black; position: relative;">
-		      <div id='container3'>
-		        <h1> Business Frequency Statistics </h1>
-		        <div class="dropdown1">
-				  <button class="btn btn-secondary dropdown-toggle custom-time-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: relative;">
-				    Business Type: <span id="business-type">Restaurants</span>
-				  </button>
-				  <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton" style="position: relative;">
-				    <a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Restaurants')">Restaurants</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Shopping')">Shopping</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Food')">Food</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Beauty & Spas')">Beauty & Spas</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Home Services')">Home Services</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Health & Medical')">Health & Medical</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Local Services')">Local Services</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Automotive')">Automotive</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Nightlife')">Nightlife</a>
-				   	<a class="dropdown-item" href='javascript:void();' onclick="changeData_heatmap('Bars')">Bars</a>
-				  </div>
-				</div>
-		        <div id="graph"></div>
-		        <div class="fancy" style="position: absolute; left: 2%; top: 4%;">Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy. Hi! I want to be fancy.  Hi! I want to be fancy. Hi! I want to be fancy. </div>
-		      </div>
-		  </div>		  
 		</body>
 		<script src="/static/heatmap.js" type="module"></script>	
 		<script src="/static/trafficChart.js" type="module"></script>

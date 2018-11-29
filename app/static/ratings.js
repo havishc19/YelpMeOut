@@ -7,7 +7,7 @@
     var sample = sampleTemp;
     console.log(sample);
 
-    const svg = d3.select('svg');
+    const svg = d3.select('#svg1');
     const svgContainer = d3.select('#container1');
     
     const margin = 80;
@@ -143,13 +143,6 @@
       .attr('y', height + margin * 1.7)
       .attr('text-anchor', 'middle')
       .text('Rating')
-
-    svg.append('text')
-      .attr('class', 'title')
-      .attr('x', width / 2 + margin)
-      .attr('y', 40)
-      .attr('text-anchor', 'middle')
-      .text('Ratings Distribution')   
 }
 
 
