@@ -67,7 +67,7 @@ function renderHeatmap(data, usjson, business_type) {
       .attr("fill", "#000")
       .attr("text-anchor", "start")
       .attr("font-weight", "bold")
-      .text("Frequency (units of 100)");
+      .text("Frequency");
 
   g.selectAll("text")
     .data(labels)
