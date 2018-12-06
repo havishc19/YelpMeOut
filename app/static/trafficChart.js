@@ -167,7 +167,7 @@ var renderChart = function(data){
 
   export function getData_Traffic(timeRange){
     $("#traffic-chart").remove();
-    // $("#loading").show();
+    $("#loading").show();
       $.ajax({
         url: '/getTraffic',
         data: {'time': timeRange},
