@@ -32,6 +32,7 @@ def index():
     ]
     return render_template('explore.html', title='Yelp Me Out!!', user=user, posts=posts)
 
+@app.route('/')
 @app.route('/home')
 def home():
     return render_template('index.html', title='Yelp Me Out!!')
@@ -229,7 +230,6 @@ def renderAnalyze():
     # data = getTagData()
     return render_template('analyze.html', title='Yelp Me Out!!')
 
-@app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()

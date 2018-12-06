@@ -2,6 +2,7 @@
 
 Step 1)
 Create virtual environment
+If you don't have virtualenv on your local: pip intall virtualenv
 1.) virtualenv venv
 2.) source venv/bin/activate
 
@@ -43,10 +44,16 @@ Run ".tables" to list all tables in DB. "alembic_version" maintains the commit h
 
 Step 5) 
 Dumping Yelp data into DB
--> Move all the Yelp files into the project root (in parallel with this README file)
--> Load each table by itself, the data's huge and all of it will prolly not fit in memory. So call the loadXXX() functions of DatabaseLoader Class in the loadData.py seperately.
+-> Move all the Yelp files into the project root (in parallel with this README file or else the script to dump data won't run)
+Link to the dataset: https://www.kaggle.com/yelp-dataset/yelp-dataset
+The link to the dataset hosted on the offical yelp page requires signup, this is easier.
+-> Load each table by itself, the data's huge and all of it will prolly not fit in memory. So call the loadXXX() functions of DatabaseLoader Class in the loadData.py seperately. More instructions in the 'loadData.py'
 -> This might take time.
 
 Step 6)
 Running the Flask Application
 -> run 'flask run'
+-> Your application is hosted on localhost:5000
+
+
+The above set of instructions have been used by other members of the team and they've worked flawlessly. Any issues with the setup process, please shoot out a mail to the hchennamraj3@gatech.edu or archit1@gatech.edu.

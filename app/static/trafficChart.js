@@ -140,14 +140,14 @@ var renderChart = function(data){
       .attr('y', margin / 2.4)
       .attr('transform', 'rotate(-90)')
       .attr('text-anchor', 'middle')
-      .text('Customer Influx')
+      .text('Business Category')
 
     svg.append('text')
       .attr('class', 'label')
       .attr('x', width / 2 + margin)
       .attr('y', height + margin * 1.7)
       .attr('text-anchor', 'middle')
-      .text('Business Category')
+      .text('Customer Influx')
 
     chart.append('g')
       .attr('transform', `translate(0,0)`)
