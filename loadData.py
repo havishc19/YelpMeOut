@@ -151,6 +151,7 @@ class DatabaseLoader:
 
 
 databaseLoader = DatabaseLoader()
+#Each of the loadXXX() functions is used to load up one table of data. For instance loadCheckinData() loads up data related to checkins from the Yelp Dataset. I suggest you run one subroutine at a time to make sure the data has been dumped properly. 
 #databaseLoader.loadCheckinData()
 # databaseLoader.loadReviewsData()
 # databaseLoader.loadTipData()
