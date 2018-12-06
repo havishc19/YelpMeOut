@@ -78,7 +78,7 @@ var chart = c3.generate({
     bindto: '#gauge',
     data: {
         columns: [
-            ['Rating', 4.4]
+            ['Rating', 0]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -112,40 +112,40 @@ var chart = c3.generate({
     }
 });
 
-setTimeout(function () {
-    chart.load({
-        columns: [['Rating', 0.9]]
-    });
-}, 1000);
+// setTimeout(function () {
+//     chart.load({
+//         columns: [['Rating', 0.9]]
+//     });
+// }, 1000);
 
-setTimeout(function () {
-    chart.load({
-        columns: [['Rating', 1.4]]
-    });
-}, 2000);
+// setTimeout(function () {
+//     chart.load({
+//         columns: [['Rating', 1.4]]
+//     });
+// }, 2000);
 
-setTimeout(function () {
-    chart.load({
-        columns: [['Rating', 5]]
-    });
-}, 3000);
+// setTimeout(function () {
+//     chart.load({
+//         columns: [['Rating', 5]]
+//     });
+// }, 3000);
 
-setTimeout(function () {
-    chart.load({
-        columns: [['Rating', 4.3]]
-    });
-}, 4000);
+// setTimeout(function () {
+//     chart.load({
+//         columns: [['Rating', 4.3]]
+//     });
+// }, 4000);
 
-setTimeout(function () {
-    chart.load({
-        columns: [['Rating', 3.3]]
-    });
-}, 5000);
+// setTimeout(function () {
+//     chart.load({
+//         columns: [['Rating', 3.3]]
+//     });
+// }, 5000);
 
 
-setTimeout(function () {
-    chart.load({
-        columns: [['Rating', 0.9]]
-    });
-}, 1000);
+// setTimeout(function () {
+//     chart.load({
+//         columns: [['Rating', 0.9]]
+//     });
+// }, 1000);
 
